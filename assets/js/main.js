@@ -108,24 +108,34 @@ function initFaqAccordion() {
 let currentScreenshotIndex = 0;
 const screenshotsData = [
   {
-    title: "Donut Şelalesi ve Tatlı Parkuru",
-    desc: "Altın donatları topla, engellerden zıpla ve şeker rampalarından uç!",
-    tag: "Aksiyon"
+    image: "assets/img/screenshots/screenshot-galata.png",
+    title: "İstanbul / Galata Kulesi Parkuru",
+    desc: "Tarihi Galata Kulesi manzarası eşliğinde leziz balık ekmek ve köfteleri yakala! Sevimli bombalara dikkat et.",
+    tag: "İstanbul"
   },
   {
-    title: "Çikolata Vadisi & Şeker Roketi",
-    desc: "Çikolata girdaplarına dikkat et! Şeker roketini alarak gökyüzünde şeker seli yakala.",
-    tag: "Güçlendirici"
+    image: "assets/img/screenshots/screenshot-mostar-fes.png",
+    title: "Balkanlar & Geleneksel Fesli Dobişko",
+    desc: "Tarihi Mostar Köprüsü gün batımında nefis tepsi börekleri ve cevapi köfteleri kap! Fes ve yelek kostümüyle Dobişko sahnede.",
+    tag: "Kostüm & Bölüm"
   },
   {
-    title: "Dobişko Dolabı - Kostüm Özelleştirme",
-    desc: "Aşçı şapkası, çilekli pelerin ve sevimli pati ayakkabılarıyla Dobişko'yu dilediğin gibi süsle.",
-    tag: "Karakter"
+    image: "assets/img/screenshots/screenshot-paris-bomba.png",
+    title: "Paris / Eyfel Kulesi & Bomba Kaçışı",
+    desc: "Eyfel Kulesi manzaralı kafede sevimli ama tehlikeli bombalardan hızla kaç! Reflekslerini konuştur.",
+    tag: "Refleks"
   },
   {
-    title: "Liderlik Tablosu & Rekor Yarışı",
-    desc: "En yüksek skoru yap, arkadaşlarınla yarış ve haftalık tatlı ödülleri kazan!",
-    tag: "Sosyal & Rekor"
+    image: "assets/img/screenshots/screenshot-vampire-combo.png",
+    title: "Gotik Şato & Drakula Kostümü Mega Combo!",
+    desc: "Şato mahzeninde Drakula pelerini ve silindir şapkayla x13 Mega Combo yakala, gazozları ve kebapları topla!",
+    tag: "Özel Kostüm"
+  },
+  {
+    image: "assets/img/screenshots/screenshot-paris-burger.png",
+    title: "Paris Gourmet & Pizza/Burger Ziyafeti",
+    desc: "Havada uçuşan çıtır pizza dilimleri ve burgerleri Dobişko'nun göbeğine indir! Salatalarla puanını katla.",
+    tag: "Ziyafet"
   }
 ];
 
@@ -145,19 +155,12 @@ function initScreenshotModal() {
   function updateModal(index) {
     currentScreenshotIndex = (index + screenshotsData.length) % screenshotsData.length;
     const data = screenshotsData[currentScreenshotIndex];
-    const sourceCard = document.querySelector(`[data-index="${currentScreenshotIndex}"] .screenshot-preview-art`);
 
     if (modalTitle) modalTitle.textContent = data.title;
     if (modalDesc) modalDesc.textContent = data.desc;
     if (modalTag) modalTag.textContent = data.tag;
-    if (modalImg && sourceCard) {
-      modalImg.innerHTML = sourceCard.outerHTML;
-      // remove hover scales inside modal
-      const preview = modalImg.firstElementChild;
-      if (preview) {
-        preview.classList.remove('h-56', 'h-64');
-        preview.classList.add('h-72', 'sm:h-96', 'w-full');
-      }
+    if (modalImg) {
+      modalImg.innerHTML = `<img src="${data.image}" alt="${data.title}" class="max-h-[65vh] sm:max-h-[70vh] w-auto mx-auto object-contain rounded-2xl shadow-xl border-2 border-white/20">`;
     }
   }
 
@@ -244,7 +247,7 @@ function initDownloadHandlers() {
       // Trigger festive sweet confetti
       createConfettiBurst(e.clientX, e.clientY);
       playVictorySound();
-      showToast("🍩 Dobişko APK v1.0.4 hazırlanıyor... İndirme 3 saniye içinde başlayacak!");
+      showToast("🎮 Dobişko APK (dobisko_test_v_1_0.apk) indiriliyor... Keyifli oyunlar!");
     });
   });
 }
