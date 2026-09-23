@@ -1,76 +1,128 @@
 /* ==========================================================================
-   Dobişko Mobile Game Landing Page - Custom Styles & Animations
+   Dobişko - Magical Candy World Theme & Styles
+   Directly matching the cartoon game art (Dobişko, candies, coins & cookies)
    ========================================================================== */
 
-/* Custom Smooth Scrolling */
+/* Smooth Scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Custom Scrollbar */
+/* Custom Candy Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 12px;
 }
 ::-webkit-scrollbar-track {
-  background: #fdf2f8;
+  background: #e0f2fe;
 }
 ::-webkit-scrollbar-thumb {
-  background: #f472b6;
+  background: linear-gradient(180deg, #38bdf8, #f59e0b);
   border-radius: 9999px;
-  border: 2px solid #fdf2f8;
+  border: 3px solid #e0f2fe;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #ec4899;
+  background: linear-gradient(180deg, #0284c7, #d97706);
 }
 
-/* Glassmorphism Styles */
-.glass-card {
-  background: rgba(255, 255, 255, 0.88);
+/* Vibrant Light-Blue Sky Theme Background */
+.candy-sky-bg {
+  background: radial-gradient(ellipse at 50% 10%, #bae6fd 0%, #7dd3fc 45%, #38bdf8 85%, #0284c7 100%);
+  background-attachment: fixed;
+}
+
+/* 3D Bubbly Cartoon Title Effect (Matching the official banner) */
+.cartoon-title {
+  font-family: 'Fredoka', cursive, sans-serif;
+  color: #ffffff;
+  text-shadow: 
+    -2px -2px 0 #0284c7,  
+     2px -2px 0 #0284c7,
+    -2px  2px 0 #0284c7,
+     2px  2px 0 #0284c7,
+     0 4px 0 #0369a1,
+     0 7px 0 #075985,
+     0 10px 18px rgba(3, 105, 161, 0.45);
+}
+
+.cartoon-title-cookie {
+  font-family: 'Fredoka', cursive, sans-serif;
+  color: #fffbeb;
+  text-shadow: 
+    -2px -2px 0 #78350f,  
+     2px -2px 0 #78350f,
+    -2px  2px 0 #78350f,
+     2px  2px 0 #78350f,
+     0 4px 0 #451a03,
+     0 6px 14px rgba(69, 26, 3, 0.4);
+}
+
+/* Candy Glassmorphism Cards */
+.candy-card {
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  border: 3px solid #ffffff;
+  box-shadow: 0 16px 36px -8px rgba(2, 132, 199, 0.22), 0 0 0 1px rgba(186, 230, 253, 0.6);
+  border-radius: 28px;
 }
 
-.glass-nav {
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(253, 230, 138, 0.5);
+.candy-card-subtle {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 12px 28px -6px rgba(14, 116, 144, 0.16);
+  border-radius: 24px;
 }
 
-/* Candy Button Glows */
-.btn-candy {
-  position: relative;
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow: 0 10px 25px -5px rgba(244, 63, 94, 0.4), 0 8px 10px -6px rgba(244, 63, 94, 0.3);
+/* Warm Cookie / Chocolate Buttons (Primary CTA) */
+.btn-cookie {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 45%, #d97706 80%, #b45309 100%);
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(69, 26, 3, 0.4);
+  box-shadow: 0 10px 24px -4px rgba(180, 83, 9, 0.5), 0 4px 0 #92400e;
+  border: 2px solid #fef3c7;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.btn-candy:hover {
+.btn-cookie:hover {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 18px 30px -5px rgba(244, 63, 94, 0.5), 0 10px 15px -5px rgba(244, 63, 94, 0.4);
+  box-shadow: 0 16px 30px -4px rgba(180, 83, 9, 0.6), 0 5px 0 #78350f;
+  background: linear-gradient(135deg, #fcd34d 0%, #fbbf24 45%, #d97706 85%, #92400e 100%);
 }
 
-.btn-candy:active {
-  transform: translateY(1px) scale(0.98);
+.btn-cookie:active {
+  transform: translateY(2px) scale(0.98);
+  box-shadow: 0 4px 10px rgba(180, 83, 9, 0.4), 0 1px 0 #78350f;
 }
 
-.btn-secondary-candy {
-  transition: all 0.25s ease;
-  box-shadow: 0 8px 20px -4px rgba(245, 158, 11, 0.25);
+/* Sky-Blue Candy Buttons (Secondary CTA) */
+.btn-sky-candy {
+  background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 60%, #0284c7 100%);
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(3, 105, 161, 0.5);
+  box-shadow: 0 8px 20px -3px rgba(2, 132, 199, 0.45), 0 3px 0 #0369a1;
+  border: 2px solid #e0f2fe;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.btn-secondary-candy:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 24px -4px rgba(245, 158, 11, 0.35);
+.btn-sky-candy:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 14px 26px -3px rgba(2, 132, 199, 0.55), 0 4px 0 #075985;
+}
+
+.btn-sky-candy:active {
+  transform: translateY(2px) scale(0.98);
+  box-shadow: 0 4px 10px rgba(2, 132, 199, 0.3), 0 1px 0 #075985;
 }
 
 /* Floating Animations */
-@keyframes floatSlow {
+@keyframes floatGentle {
   0%, 100% {
     transform: translateY(0px) rotate(0deg);
   }
   50% {
-    transform: translateY(-16px) rotate(4deg);
+    transform: translateY(-14px) rotate(3deg);
   }
 }
 
@@ -79,54 +131,36 @@ html {
     transform: translateY(0px) rotate(0deg);
   }
   50% {
-    transform: translateY(14px) rotate(-5deg);
+    transform: translateY(14px) rotate(-4deg);
   }
 }
 
-@keyframes pulseGlow {
+@keyframes coinSpinGlow {
   0%, 100% {
-    opacity: 0.6;
-    transform: scale(1);
+    transform: scale(1) rotate(0deg);
+    filter: drop-shadow(0 4px 12px rgba(245, 158, 11, 0.4));
   }
   50% {
-    opacity: 0.95;
-    transform: scale(1.08);
+    transform: scale(1.08) rotate(6deg);
+    filter: drop-shadow(0 8px 20px rgba(245, 158, 11, 0.7));
   }
 }
 
-@keyframes bounceSlight {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
-.animate-float-slow {
-  animation: floatSlow 5s ease-in-out infinite;
+.animate-float-gentle {
+  animation: floatGentle 5s ease-in-out infinite;
 }
 
 .animate-float-reverse {
   animation: floatReverse 6s ease-in-out infinite;
 }
 
-.animate-pulse-glow {
-  animation: pulseGlow 4s ease-in-out infinite;
+.animate-coin-glow {
+  animation: coinSpinGlow 3.5s ease-in-out infinite;
 }
 
-.animate-bounce-slight {
-  animation: bounceSlight 2.5s ease-in-out infinite;
-}
-
-/* Phone Mockup Frame Shadows */
-.phone-shadow {
-  box-shadow: 0 25px 60px -15px rgba(69, 26, 3, 0.25), 0 0 0 10px #1e293b, 0 0 0 12px #334155;
-}
-
-/* Gallery Hover Vignette */
+/* Gallery Item Styling */
 .gallery-item {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .gallery-item:hover {
@@ -137,42 +171,15 @@ html {
   opacity: 1;
 }
 
-/* Shimmer Highlight Effect */
-.shimmer {
-  position: relative;
-  overflow: hidden;
-}
-.shimmer::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    60deg,
-    transparent,
-    rgba(255, 255, 255, 0.4),
-    transparent
-  );
-  transform: rotate(30deg);
-  animation: shimmerMove 3.5s infinite;
-}
-
-@keyframes shimmerMove {
-  0% { transform: translate(-100%, -100%) rotate(30deg); }
-  30%, 100% { transform: translate(100%, 100%) rotate(30deg); }
-}
-
-/* Modal animation */
+/* Modal Animation */
 .modal-enter {
-  animation: modalIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
-@keyframes modalIn {
+@keyframes modalPop {
   from {
     opacity: 0;
-    transform: scale(0.92);
+    transform: scale(0.88);
   }
   to {
     opacity: 1;

@@ -263,7 +263,7 @@ function initDownloadHandlers() {
 /* 6. Pure Web Audio Synthesizer (Arcade Game Audio)                         */
 /* -------------------------------------------------------------------------- */
 let audioCtx = null;
-let soundEnabled = true;
+let soundEnabled = false;
 
 function getAudioContext() {
   if (!audioCtx) {
@@ -315,20 +315,36 @@ function playVictorySound() {
   } catch (err) {}
 }
 
+let themeAudio = null;
+
 function initSweetSoundToggle() {
   const toggleBtn = document.getElementById('soundToggleBtn');
   const soundIcon = document.getElementById('soundIcon');
   if (!toggleBtn) return;
 
+  try {
+    themeAudio = new Audio('assets/audio/dobisko-theme.mp3');
+    themeAudio.loop = true;
+    themeAudio.volume = 0.35;
+  } catch (e) {}
+
   toggleBtn.addEventListener('click', () => {
     soundEnabled = !soundEnabled;
     if (soundIcon) {
       soundIcon.className = soundEnabled
-        ? 'fa-solid fa-volume-high text-pink-500'
+        ? 'fa-solid fa-music text-amber-500 animate-bounce'
         : 'fa-solid fa-volume-xmark text-slate-400';
     }
     if (soundEnabled) {
-      playSweetSound(523.25, 0.1);
+      if (themeAudio) {
+        themeAudio.play().catch(() => playSweetSound(523.25, 0.15));
+      } else {
+        playSweetSound(523.25, 0.15);
+      }
+    } else {
+      if (themeAudio) {
+        themeAudio.pause();
+      }
     }
   });
 }
@@ -337,7 +353,7 @@ function initSweetSoundToggle() {
 /* 7. Canvas Confetti Sweet Burst Generator                                  */
 /* -------------------------------------------------------------------------- */
 function createConfettiBurst(originX, originY) {
-  const colors = ['#f43f5e', '#fb7185', '#f59e0b', '#fde047', '#38bdf8', '#34d399', '#a855f7'];
+  const colors = ['#f59e0b', '#d97706', '#fbbf24', '#38bdf8', '#0284c7', '#ec4899', '#ffffff'];
   const confettiCount = 35;
   const container = document.body;
 
@@ -348,7 +364,6 @@ function createConfettiBurst(originX, originY) {
     const piece = document.createElement('div');
     piece.className = 'fixed pointer-events-none rounded-full z-50';
     
-    // Randomize shape (circle or candy pill or star)
     const size = Math.floor(Math.random() * 10) + 6;
     piece.style.width = `${size}px`;
     piece.style.height = `${size}px`;
@@ -356,14 +371,14 @@ function createConfettiBurst(originX, originY) {
     piece.style.left = `${posX}px`;
     piece.style.top = `${posY}px`;
     piece.style.opacity = '1';
-    piece.style.boxShadow = '0 2px 6px rgba(0,0,0,0.15)';
+    piece.style.boxShadow = '0 2px 6px rgba(0,0,0,0.2)';
 
     container.appendChild(piece);
 
     const angle = Math.random() * Math.PI * 2;
     const velocity = Math.random() * 120 + 80;
     const destX = Math.cos(angle) * velocity;
-    const destY = Math.sin(angle) * velocity + 60; // bias downward like gravity
+    const destY = Math.sin(angle) * velocity + 60;
     const rotation = Math.random() * 720;
 
     piece.animate([
@@ -396,19 +411,20 @@ function initSweetParticles() {
     height = canvas.height = canvas.parentElement.offsetHeight;
   }, { passive: true });
 
-  const sweetsIcons = ['🍪', '🍩', '🍬', '🧁', '⭐', '🍓'];
+  // Cartoon candies, lollipops, coins & sweets directly matching image_5
+  const sweetsIcons = ['🍪', '🍩', '🍬', '🍭', '🪙', '⭐', '🧁'];
   const particles = [];
-  const particleCount = window.innerWidth < 768 ? 12 : 22;
+  const particleCount = window.innerWidth < 768 ? 14 : 26;
 
   for (let i = 0; i < particleCount; i++) {
     particles.push({
       x: Math.random() * width,
       y: Math.random() * height,
-      size: Math.random() * 12 + 14,
+      size: Math.random() * 14 + 16,
       char: sweetsIcons[Math.floor(Math.random() * sweetsIcons.length)],
-      speedY: Math.random() * 0.4 + 0.2,
-      speedX: (Math.random() - 0.5) * 0.3,
-      alpha: Math.random() * 0.4 + 0.25,
+      speedY: Math.random() * 0.45 + 0.25,
+      speedX: (Math.random() - 0.5) * 0.35,
+      alpha: Math.random() * 0.5 + 0.3,
       rotation: Math.random() * Math.PI * 2,
       rotationSpeed: (Math.random() - 0.5) * 0.02
     });
@@ -422,12 +438,12 @@ function initSweetParticles() {
       p.x += p.speedX;
       p.rotation += p.rotationSpeed;
 
-      if (p.y < -30) {
-        p.y = height + 30;
+      if (p.y < -35) {
+        p.y = height + 35;
         p.x = Math.random() * width;
       }
-      if (p.x < -30) p.x = width + 30;
-      if (p.x > width + 30) p.x = -30;
+      if (p.x < -35) p.x = width + 35;
+      if (p.x > width + 35) p.x = -35;
 
       ctx.save();
       ctx.translate(p.x, p.y);

@@ -3,24 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dobişko | En Tatlı Koşu Başlıyor! - Android Mobil Oyunu</title>
-  <meta name="description" content="Tombiş kahramanımız Dobişko ile şekerler, donatlar ve sıcacık kurabiyelerle dolu sonsuz bir maceraya atılın! Android için ücretsiz Dobişko APK hemen indir.">
+  <title>Dobişko | En Tatlı Koşu Başlıyor! - Resmi Android Oyunu</title>
+  <meta name="description" content="Tombiş kahramanımız Dobişko ile kurabiyeler, donatlar ve şekerlerle dolu en tatlı koşu macerası! Android APK hemen indir.">
   <meta name="keywords" content="Dobişko, Android oyun, sonsuz koşu oyunu, endless runner, tatlı oyunu, apk indir, mobil oyun">
   <meta name="author" content="Dobişko Games">
   
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="Dobişko - En Tatlı Koşu Başlıyor!">
-  <meta property="og:description" content="Tombiş ve sevimli kahramanımız Dobişko ile tatlı dolu sonsuz koşu macerası! Hemen ücretsiz indir.">
+  <meta property="og:description" content="Tombiş kahramanımız Dobişko ile kurabiye ve donat dolu sonsuz koşu macerası!">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://dobisko.netlify.app">
+  <meta property="og:image" content="assets/img/dobisko-banner.png">
   
-  <!-- Favicon / Emoji -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍩</text></svg>">
+  <!-- Favicon / Character Avatar -->
+  <link rel="icon" type="image/png" href="assets/img/dobisko-avatar.png">
 
   <!-- Google Fonts: Fredoka & Quicksand -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
 
   <!-- Font Awesome 6 Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -32,23 +33,22 @@
       theme: {
         extend: {
           fontFamily: {
-            title: ['Fredoka', 'sans-serif'],
+            title: ['Fredoka', 'cursive', 'sans-serif'],
             sans: ['Quicksand', 'sans-serif']
           },
           colors: {
             candy: {
-              pink: '#F43F5E',
-              rose: '#FB7185',
-              softPink: '#FCE7F3',
-              yellow: '#FDE047',
-              amber: '#F59E0B',
+              skyLight: '#BAE6FD',
               sky: '#38BDF8',
-              softSky: '#E0F2FE',
+              skyDark: '#0284C7',
+              cookieLight: '#FDE68A',
+              cookie: '#F59E0B',
+              cookieDark: '#D97706',
               choco: '#451A03',
               caramel: '#78350F',
               cream: '#FFFBEB',
-              mint: '#34D399',
-              softMint: '#ECFDF5'
+              donutPink: '#F472B6',
+              candyRed: '#EF4444'
             }
           }
         }
@@ -56,66 +56,68 @@
     }
   </script>
 
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="assets/css/style.css?v=2.2">
+  <!-- Custom Candy World Theme Styles -->
+  <link rel="stylesheet" href="assets/css/style.css?v=3.0">
 </head>
-<body class="bg-gradient-to-b from-[#E0F2FE] via-[#FEF2F2] to-[#FFFBEB] text-[#451A03] font-sans antialiased selection:bg-pink-300 selection:text-pink-900 min-h-screen relative overflow-x-hidden">
+<body class="candy-sky-bg text-[#451A03] font-sans antialiased min-h-screen relative overflow-x-hidden selection:bg-amber-300 selection:text-amber-950">
 
-  <!-- Canvas For Ambient Sweet Particles -->
+  <!-- Floating Candy & Coin Particle Canvas -->
   <canvas id="sweetParticlesCanvas" class="fixed inset-0 pointer-events-none z-0 w-full h-full"></canvas>
 
   <!-- ========================================================================
-       TOP NOTIFICATION BANNER
+       TOP CANDY ANNOUNCEMENT BAR
        ======================================================================== -->
-  <div class="bg-gradient-to-r from-pink-500 via-rose-500 to-amber-500 text-white text-xs sm:text-sm font-semibold py-2 px-4 text-center relative z-40 flex items-center justify-center gap-2 shadow-sm">
-    <span class="inline-flex items-center justify-center bg-white/20 rounded-full px-2 py-0.5 text-[11px] uppercase tracking-wider">YENİ</span>
+  <div class="bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-400 text-amber-950 text-xs sm:text-sm font-bold py-2 px-4 text-center relative z-40 flex items-center justify-center gap-2 border-b-2 border-amber-300/80 shadow-sm">
+    <span class="inline-flex items-center justify-center bg-white/70 rounded-full px-2.5 py-0.5 text-[11px] uppercase tracking-wider text-amber-900 shadow-xs">🍭 YENİ</span>
     <span>🎉 Test Sürümü (v1.0) Yayında! İstanbul, Paris ve Balkan parkurlarını hemen deneyin.</span>
-    <a href="#download" class="underline font-bold hover:text-yellow-200 transition-colors ml-1">Hemen İndir &rarr;</a>
+    <a href="#download" class="underline font-extrabold hover:text-amber-800 transition-colors ml-1">Doğrudan İndir &rarr;</a>
   </div>
 
   <!-- ========================================================================
-       HEADER / NAVIGATION BAR
+       HEADER / NAVIGATION BAR (Overhauled with Character Logo)
        ======================================================================== -->
-  <header id="mainNavbar" class="sticky top-0 z-40 glass-nav transition-all duration-300 py-4 px-4 sm:px-8">
+  <header id="mainNavbar" class="sticky top-0 z-40 bg-white/80 backdrop-blur-md transition-all duration-300 py-3.5 px-4 sm:px-8 border-b-2 border-sky-200/80 shadow-sm">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       
-      <!-- Brand Logo -->
+      <!-- Brand Logo: Dobişko Character Avatar & Bubbly Text -->
       <a href="#" class="flex items-center gap-3 group">
-        <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-amber-300 via-pink-400 to-rose-500 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-200 border-2 border-white">
-          <span class="text-2xl sm:text-3xl filter drop-shadow">🍩</span>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden border-3 border-white shadow-md bg-gradient-to-tr from-sky-300 to-amber-200 group-hover:scale-105 transition-transform duration-200 shrink-0 ring-2 ring-amber-300/80">
+          <img src="assets/img/dobisko-avatar.png" alt="Dobişko Logo" class="w-full h-full object-cover">
         </div>
-        <div>
-          <span class="font-title text-2xl sm:text-3xl font-bold tracking-tight text-candy-choco group-hover:text-candy-pink transition-colors">
-            Dobişko<span class="text-candy-pink">.</span>
+        <div class="flex flex-col">
+          <span class="font-title text-2xl sm:text-3xl font-extrabold tracking-wide text-sky-600 drop-shadow-[0_2px_0_#ffffff] group-hover:text-amber-600 transition-colors leading-tight">
+            DOBİŞKO
           </span>
-          <span class="hidden sm:block text-[11px] font-semibold text-amber-700 tracking-wide uppercase">Tombiş Sonsuz Koşu</span>
+          <span class="text-[11px] sm:text-xs font-bold text-amber-800 tracking-tight flex items-center gap-1">
+            <span>🍪</span> En Tatlı Koşu Başlıyor!
+          </span>
         </div>
       </a>
 
       <!-- Desktop Navigation Menu -->
-      <nav class="hidden md:flex items-center gap-8 font-semibold text-sm text-candy-choco">
-        <a href="#about" class="hover:text-candy-pink transition-colors relative py-1 hover:after:w-full after:w-0 after:h-0.5 after:bg-candy-pink after:absolute after:bottom-0 after:left-0 after:transition-all">Oyun Hakkında</a>
-        <a href="#features" class="hover:text-candy-pink transition-colors relative py-1 hover:after:w-full after:w-0 after:h-0.5 after:bg-candy-pink after:absolute after:bottom-0 after:left-0 after:transition-all">Özellikler</a>
-        <a href="#gallery" class="hover:text-candy-pink transition-colors relative py-1 hover:after:w-full after:w-0 after:h-0.5 after:bg-candy-pink after:absolute after:bottom-0 after:left-0 after:transition-all">Ekran Görüntüleri</a>
-        <a href="#faq" class="hover:text-candy-pink transition-colors relative py-1 hover:after:w-full after:w-0 after:h-0.5 after:bg-candy-pink after:absolute after:bottom-0 after:left-0 after:transition-all">SSS</a>
+      <nav class="hidden md:flex items-center gap-8 font-title font-bold text-base text-candy-caramel">
+        <a href="#about" class="hover:text-sky-600 transition-colors relative py-1 hover:after:w-full after:w-0 after:h-0.5 after:bg-sky-500 after:absolute after:bottom-0 after:left-0 after:transition-all">Oyun Hakkında</a>
+        <a href="#features" class="hover:text-sky-600 transition-colors relative py-1 hover:after:w-full after:w-0 after:h-0.5 after:bg-sky-500 after:absolute after:bottom-0 after:left-0 after:transition-all">Özellikler</a>
+        <a href="#gallery" class="hover:text-sky-600 transition-colors relative py-1 hover:after:w-full after:w-0 after:h-0.5 after:bg-sky-500 after:absolute after:bottom-0 after:left-0 after:transition-all">Ekran Görüntüleri</a>
+        <a href="#faq" class="hover:text-sky-600 transition-colors relative py-1 hover:after:w-full after:w-0 after:h-0.5 after:bg-sky-500 after:absolute after:bottom-0 after:left-0 after:transition-all">SSS</a>
       </nav>
 
-      <!-- Action Area: Sound Toggle & CTA -->
+      <!-- Action Area: Sound/Music Toggle & Warm Cookie CTA -->
       <div class="flex items-center gap-3">
-        <!-- Interactive Game Sound Toggle -->
-        <button id="soundToggleBtn" title="Oyun Efektlerini Aç/Kapat" class="w-10 h-10 rounded-full bg-white/80 border border-amber-200 shadow-sm flex items-center justify-center hover:bg-white hover:scale-105 active:scale-95 transition-all text-candy-choco">
-          <i id="soundIcon" class="fa-solid fa-volume-high text-pink-500"></i>
+        <!-- Interactive Game Music Toggle -->
+        <button id="soundToggleBtn" title="Oyun Müziğini Aç/Kapat" class="w-11 h-11 rounded-2xl bg-white border-2 border-amber-200 shadow-sm flex items-center justify-center hover:bg-amber-50 hover:scale-105 active:scale-95 transition-all text-amber-700 cursor-pointer">
+          <i id="soundIcon" class="fa-solid fa-music text-amber-500 text-lg"></i>
         </button>
 
-        <!-- Primary CTA Button (Desktop) -->
-        <a href="apk/dobisko_test_v_1_0.apk" download="dobisko_test_v_1_0.apk" class="download-trigger hidden sm:inline-flex items-center gap-2.5 bg-gradient-to-r from-candy-pink to-rose-500 text-white font-title text-base font-semibold px-5 py-2.5 rounded-full btn-candy border-2 border-white/60">
+        <!-- Primary Warm Cookie CTA Button (Desktop) -->
+        <a href="apk/dobisko_test_v_1_0.apk" download="dobisko_test_v_1_0.apk" class="download-trigger hidden sm:inline-flex items-center gap-2.5 font-title text-base font-bold px-6 py-2.5 rounded-full btn-cookie cursor-pointer">
           <i class="fa-brands fa-android text-lg"></i>
           <span>APK İndir</span>
-          <span class="bg-white/20 text-xs px-2 py-0.5 rounded-full font-sans font-bold">300MB</span>
+          <span class="bg-white/30 text-xs px-2 py-0.5 rounded-full font-sans font-bold">300MB</span>
         </a>
 
-        <!-- Mobile Menu Hamburger Button -->
-        <button id="mobileMenuBtn" aria-label="Menüyü Aç" aria-expanded="false" class="md:hidden w-10 h-10 rounded-xl bg-white border border-amber-200 flex items-center justify-center text-candy-choco hover:text-candy-pink">
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn" aria-label="Menüyü Aç" aria-expanded="false" class="md:hidden w-11 h-11 rounded-2xl bg-white border-2 border-amber-200 flex items-center justify-center text-amber-800 hover:text-amber-600">
           <i class="fa-solid fa-bars text-xl"></i>
         </button>
       </div>
@@ -123,22 +125,22 @@
     </div>
 
     <!-- Mobile Drawer Menu -->
-    <div id="mobileMenu" class="hidden md:hidden transition-all duration-300 opacity-0 -translate-y-4 pt-4 pb-2 border-t border-amber-100 mt-3">
-      <div class="flex flex-col gap-3 font-title text-base">
-        <a href="#about" class="mobile-nav-link p-2 rounded-xl hover:bg-pink-50 text-candy-choco hover:text-candy-pink flex items-center gap-3">
+    <div id="mobileMenu" class="hidden md:hidden transition-all duration-300 opacity-0 -translate-y-4 pt-4 pb-2 border-t border-sky-100 mt-3">
+      <div class="flex flex-col gap-2.5 font-title text-base font-bold">
+        <a href="#about" class="mobile-nav-link p-2.5 rounded-2xl hover:bg-sky-50 text-amber-900 hover:text-sky-600 flex items-center gap-3">
           <span class="text-xl">🏃</span> Oyun Hakkında
         </a>
-        <a href="#features" class="mobile-nav-link p-2 rounded-xl hover:bg-pink-50 text-candy-choco hover:text-candy-pink flex items-center gap-3">
+        <a href="#features" class="mobile-nav-link p-2.5 rounded-2xl hover:bg-sky-50 text-amber-900 hover:text-sky-600 flex items-center gap-3">
           <span class="text-xl">⭐</span> Eğlenceli Özellikler
         </a>
-        <a href="#gallery" class="mobile-nav-link p-2 rounded-xl hover:bg-pink-50 text-candy-choco hover:text-candy-pink flex items-center gap-3">
+        <a href="#gallery" class="mobile-nav-link p-2.5 rounded-2xl hover:bg-sky-50 text-amber-900 hover:text-sky-600 flex items-center gap-3">
           <span class="text-xl">📸</span> Ekran Görüntüleri
         </a>
-        <a href="#faq" class="mobile-nav-link p-2 rounded-xl hover:bg-pink-50 text-candy-choco hover:text-candy-pink flex items-center gap-3">
+        <a href="#faq" class="mobile-nav-link p-2.5 rounded-2xl hover:bg-sky-50 text-amber-900 hover:text-sky-600 flex items-center gap-3">
           <span class="text-xl">❓</span> Sıkça Sorulan Sorular
         </a>
         <div class="pt-2">
-          <a href="apk/dobisko_test_v_1_0.apk" download="dobisko_test_v_1_0.apk" class="download-trigger mobile-nav-link w-full flex items-center justify-center gap-2 bg-gradient-to-r from-candy-pink to-rose-500 text-white font-title py-3 rounded-2xl shadow-md">
+          <a href="apk/dobisko_test_v_1_0.apk" download="dobisko_test_v_1_0.apk" class="download-trigger mobile-nav-link w-full flex items-center justify-center gap-2 btn-cookie font-title py-3.5 rounded-2xl shadow-md text-white">
             <i class="fa-brands fa-android text-xl"></i>
             <span>Dobişko APK İndir (300 MB)</span>
           </a>
@@ -148,71 +150,73 @@
   </header>
 
   <!-- ========================================================================
-       HERO SECTION: High-converting, energetic, sweet-themed
+       HERO SECTION: Candy Sky Theme with Dobişko Banner & Phone Mockup
        ======================================================================== -->
   <section class="relative pt-8 pb-16 sm:pt-14 sm:pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
       
-      <!-- Left Column: Copy & CTAs -->
+      <!-- Left Column: Big 3D Title, Mascot Graphic & Warm CTAs -->
       <div class="lg:col-span-7 text-center lg:text-left space-y-6">
         
-        <!-- Badge -->
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 border border-pink-200 shadow-sm text-candy-pink font-semibold text-xs sm:text-sm animate-bounce-slight">
-          <span class="text-base">🍪</span>
-          <span>Google Play & Bağımsız Android Oyunu</span>
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <!-- Bubbly Candy Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border-2 border-white shadow-md text-amber-900 font-title font-bold text-xs sm:text-sm animate-float-gentle">
+          <span class="text-lg">🍩</span>
+          <span>Resmi Android Bağımsız Mobil Oyunu</span>
+          <span class="text-lg">🍪</span>
         </div>
 
-        <!-- Main Headline -->
-        <h1 class="font-title text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-candy-choco leading-[1.1]">
-          Dobişko: <br>
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-500 to-amber-500">
-            En Tatlı Koşu
-          </span> Başlıyor!
-        </h1>
+        <!-- Official 3D Cartoon Title & Tagline -->
+        <div class="space-y-1">
+          <h1 class="cartoon-title text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-wider leading-none select-none">
+            DOBİŞKO
+          </h1>
+          <p class="font-title text-2xl sm:text-3xl lg:text-4xl font-extrabold text-amber-900 drop-shadow-[0_2px_0_#ffffff] tracking-tight">
+            En Tatlı Koşu Başlıyor!
+          </p>
+        </div>
 
-        <!-- Subtitle -->
-        <p class="text-base sm:text-xl text-[#6d381a] max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium">
-          Tombiş ve sevimli kahramanımız <strong>Dobişko</strong> ile İstanbul'dan Paris'e, Balkanlar'dan Gotik şatolara uzanan lezzet dolu bir maceraya atıl! Balık ekmekleri, börekleri ve burgerleri mideye indir, sevimli bombalardan kaç ve rekorları altüst et!
+        <!-- Subtitle Story -->
+        <p class="text-base sm:text-xl text-[#4a2612] max-w-2xl mx-auto lg:mx-0 leading-relaxed font-semibold bg-white/50 backdrop-blur-xs p-4 rounded-3xl border border-white/60 shadow-sm">
+          Tombiş ve neşeli kahramanımız <strong>Dobişko</strong> ile sıcacık çikolatalı kurabiyelerin, renkli donatların ve dev şeker kulelerinin peşine düş! Galata'dan Mostar'a, Paris'ten Gotik şatolara uzanan lezzet dolu sonsuz koşuda engelleri aş, bombalardan kaç ve rekor kır!
         </p>
 
-        <!-- CTA Action Buttons -->
+        <!-- CTA Action Buttons (Warm Cookie/Chocolate Primary) -->
         <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
           
-          <!-- Direct APK Button -->
-          <a href="apk/dobisko_test_v_1_0.apk" download="dobisko_test_v_1_0.apk" class="download-trigger w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-gradient-to-r from-candy-pink via-rose-500 to-pink-600 text-white font-title text-lg px-8 py-4 rounded-2xl btn-candy border-2 border-white/50 group cursor-pointer shadow-lg">
-            <i class="fa-brands fa-android text-2xl group-hover:scale-110 transition-transform"></i>
+          <!-- Direct APK Button: Warm Cookie Style -->
+          <a href="apk/dobisko_test_v_1_0.apk" download="dobisko_test_v_1_0.apk" class="download-trigger w-full sm:w-auto inline-flex items-center justify-center gap-3.5 px-8 py-4 rounded-3xl btn-cookie font-title text-lg cursor-pointer">
+            <i class="fa-brands fa-android text-3xl"></i>
             <div class="text-left">
-              <span class="block text-xs uppercase tracking-wider text-pink-100 font-sans font-bold">Doğrudan Yükle</span>
-              <span class="block leading-tight font-bold">Download APK (300 MB)</span>
+              <span class="block text-xs uppercase tracking-wider text-amber-100 font-sans font-extrabold">Doğrudan Yükle</span>
+              <span class="block leading-tight font-extrabold text-lg sm:text-xl">Download APK (300 MB)</span>
             </div>
-            <i class="fa-solid fa-arrow-down ml-2 text-sm bg-white/20 p-2 rounded-full group-hover:translate-y-1 transition-transform"></i>
+            <i class="fa-solid fa-arrow-down ml-2 text-sm bg-black/20 p-2 rounded-full"></i>
           </a>
 
-          <!-- Store / Secondary Button -->
-          <a href="#download" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-white/90 hover:bg-white text-candy-choco font-title text-base px-6 py-4 rounded-2xl border border-amber-200 btn-secondary-candy transition-all">
-            <i class="fa-solid fa-cloud-arrow-down text-amber-500 text-xl"></i>
+          <!-- Store / Secondary Sky Candy Button -->
+          <a href="#download" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 py-4 rounded-3xl btn-sky-candy font-title text-base cursor-pointer">
+            <i class="fa-solid fa-gamepad text-white text-xl"></i>
             <div class="text-left">
-              <span class="block text-xs text-amber-800 font-sans font-bold">Alternatif Mağazalar</span>
-              <span class="block font-semibold">Uptodown & Aynalar</span>
+              <span class="block text-xs text-sky-100 font-sans font-bold">Alternatif Mağazalar</span>
+              <span class="block font-bold">Uptodown & Aynalar</span>
             </div>
           </a>
 
         </div>
 
-        <!-- Trust Badges & Highlights -->
-        <div class="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs sm:text-sm font-semibold text-candy-caramel">
-          <div class="flex items-center gap-2">
-            <i class="fa-solid fa-shield-halved text-emerald-500 text-base"></i>
+        <!-- Trust Badges with Candy Icons -->
+        <div class="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs sm:text-sm font-title font-bold text-amber-950">
+          <div class="flex items-center gap-2 bg-white/80 px-3.5 py-1.5 rounded-full border border-white shadow-xs">
+            <i class="fa-solid fa-shield-halved text-emerald-600 text-base"></i>
             <span>%100 Güvenli & Virüssüz</span>
           </div>
-          <div class="flex items-center gap-2">
-            <i class="fa-solid fa-wifi text-sky-500 text-base"></i>
+          <div class="flex items-center gap-2 bg-white/80 px-3.5 py-1.5 rounded-full border border-white shadow-xs">
+            <i class="fa-solid fa-wifi text-sky-600 text-base"></i>
             <span>İnternetsiz Oynanabilir</span>
           </div>
-          <div class="flex items-center gap-2">
-            <i class="fa-solid fa-star text-amber-400 text-base"></i>
-            <span>4.9 / 5 Kullanıcı Puanı</span>
+          <div class="flex items-center gap-2 bg-white/80 px-3.5 py-1.5 rounded-full border border-white shadow-xs">
+            <i class="fa-solid fa-star text-amber-500 text-base"></i>
+            <span>4.9 / 5 Oyuncu Puanı</span>
           </div>
         </div>
 
@@ -221,19 +225,19 @@
       <!-- Right Column: Interactive Phone Device Mockup with Real Gameplay Screenshot -->
       <div class="lg:col-span-5 flex justify-center relative">
         
-        <!-- Floating Sweet Accents Around Device -->
-        <div class="absolute -top-6 -left-6 w-16 h-16 bg-pink-100 rounded-2xl p-2 shadow-lg border border-white animate-float-slow z-20 flex items-center justify-center text-3xl">
+        <!-- Floating Sweet Accents Around Device (Donut, Cookie, Candy) -->
+        <div class="absolute -top-6 -left-6 w-16 h-16 bg-white rounded-3xl p-2 shadow-lg border-2 border-pink-200 animate-float-gentle z-20 flex items-center justify-center text-3xl">
           🍩
         </div>
-        <div class="absolute top-1/3 -right-8 w-16 h-16 bg-amber-100 rounded-2xl p-2 shadow-lg border border-white animate-float-reverse z-20 flex items-center justify-center text-3xl">
-          🍔
+        <div class="absolute top-1/3 -right-8 w-16 h-16 bg-white rounded-3xl p-2 shadow-lg border-2 border-amber-200 animate-float-reverse z-20 flex items-center justify-center text-3xl">
+          🍪
         </div>
-        <div class="absolute -bottom-4 left-8 w-14 h-14 bg-rose-100 rounded-2xl p-2 shadow-lg border border-white animate-float-slow z-20 flex items-center justify-center text-2xl">
-          🍕
+        <div class="absolute -bottom-4 left-8 w-14 h-14 bg-white rounded-3xl p-2 shadow-lg border-2 border-yellow-200 animate-coin-glow z-20 flex items-center justify-center text-2xl">
+          🪙
         </div>
 
         <!-- Phone Mockup Container -->
-        <div class="relative w-[280px] sm:w-[310px] h-[580px] sm:h-[620px] bg-slate-900 rounded-[44px] p-3 phone-shadow border-4 border-slate-700/80">
+        <div class="relative w-[280px] sm:w-[310px] h-[580px] sm:h-[620px] bg-slate-900 rounded-[44px] p-3 shadow-2xl border-4 border-slate-700/80">
           
           <!-- Phone Speaker & Camera Notch -->
           <div class="absolute top-4 left-1/2 -translate-x-1/2 w-28 h-5 bg-slate-950 rounded-full z-30 flex items-center justify-center gap-2">
@@ -246,7 +250,7 @@
             <img src="assets/img/screenshots/screenshot-galata.png" alt="Dobişko Galata Oynanış Görüntüsü" class="w-full h-full object-cover">
             
             <!-- Bottom In-Game Badge Overlay -->
-            <div class="absolute bottom-4 left-3 right-3 bg-black/65 backdrop-blur-md rounded-2xl p-2.5 text-center text-white border border-white/20">
+            <div class="absolute bottom-4 left-3 right-3 bg-black/70 backdrop-blur-md rounded-2xl p-2.5 text-center text-white border border-white/20">
               <span class="text-xs font-title font-bold text-yellow-300">📍 İstanbul / Galata Kulesi</span>
               <p class="text-[11px] text-slate-200">Balık ekmekleri topla, bombalara dikkat et!</p>
             </div>
@@ -262,86 +266,86 @@
   </section>
 
   <!-- ========================================================================
-       SECTION 2: ABOUT THE GAME (Oyun Hakkında)
+       SECTION 2: ABOUT THE GAME (Oyun Hakkında & Dobişko Karakteri)
        ======================================================================== -->
-  <section id="about" class="py-16 sm:py-24 bg-white/70 backdrop-blur-md border-y border-pink-100 relative z-10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="about" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
+    <div class="candy-card p-6 sm:p-12">
       
       <!-- Section Header -->
-      <div class="text-center max-w-3xl mx-auto space-y-3 mb-14">
-        <span class="text-xs sm:text-sm font-bold uppercase tracking-widest text-candy-pink bg-pink-100/80 px-3.5 py-1 rounded-full border border-pink-200">
-          Hikaye ve Oynanış
+      <div class="text-center max-w-3xl mx-auto space-y-3 mb-12">
+        <span class="text-xs sm:text-sm font-title font-bold uppercase tracking-widest text-amber-800 bg-amber-100 px-4 py-1.5 rounded-full border border-amber-200">
+          Hikaye ve Karakter
         </span>
-        <h2 class="font-title text-3xl sm:text-5xl font-bold text-candy-choco">
-          Dobişko'nun Şeker Dolu Dünyasına Hoş Geldin!
+        <h2 class="font-title text-3xl sm:text-5xl font-extrabold text-candy-choco">
+          Dobişko ile Lezzet Peşinde!
         </h2>
-        <p class="text-base sm:text-lg text-amber-900/80">
-          Tatlılar Köyü'nde sabahın ilk ışıklarıyla dev bir fırın patlaması oldu ve bütün tatlılar ormana saçıldı! Tombiş ayı Dobişko en sevdiği kırmızı spor ayakkabılarını giydi ve maceraya atıldı.
+        <p class="text-base sm:text-lg text-amber-950 font-medium">
+          Tombiş, neşeli ve kurabiyelere aşık kahramanımız Dobişko; dünyanın dört bir yanındaki tarihi sokaklarda gökten yağan lezzetleri yakalıyor!
         </p>
       </div>
 
       <!-- Content Grid: Character Stats Card & Story Highlights -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         
-        <!-- Left: Dobişko Character Sheet -->
-        <div class="lg:col-span-5 bg-gradient-to-b from-amber-50 to-pink-50 p-6 sm:p-8 rounded-3xl border-2 border-amber-200/80 shadow-md relative overflow-hidden">
+        <!-- Left: Dobişko Character Sheet with Real Mascot Art -->
+        <div class="lg:col-span-5 bg-gradient-to-b from-sky-50 to-amber-50 p-6 sm:p-8 rounded-3xl border-3 border-amber-200 shadow-md relative overflow-hidden">
           
           <div class="flex items-center gap-4 mb-6">
-            <div class="w-16 h-16 rounded-2xl bg-amber-400/30 flex items-center justify-center text-4xl border-2 border-amber-400">
-              🐻
+            <div class="w-20 h-20 rounded-full overflow-hidden border-3 border-white shadow-md bg-amber-200 shrink-0 ring-2 ring-amber-300">
+              <img src="assets/img/dobisko-avatar.png" alt="Dobişko" class="w-full h-full object-cover">
             </div>
             <div>
-              <h3 class="font-title text-2xl font-bold text-candy-choco">Dobişko</h3>
-              <p class="text-xs font-semibold text-candy-pink uppercase tracking-wider">Baş Kahraman & Kurabiye Tutkunu</p>
+              <h3 class="font-title text-3xl font-extrabold text-candy-choco leading-tight">Dobişko</h3>
+              <p class="text-xs font-bold text-amber-700 uppercase tracking-wider">Tombiş Kahraman & Lezzet Avcısı</p>
             </div>
           </div>
 
-          <!-- Fun Attributes Progress Bars -->
-          <div class="space-y-4 font-sans text-sm font-bold text-candy-caramel">
+          <!-- Character Stats Bars -->
+          <div class="space-y-4 font-title text-sm font-bold text-candy-caramel">
             <div>
               <div class="flex justify-between mb-1">
-                <span>Kurabiye İştahı 🍪</span>
-                <span class="text-pink-600">100%</span>
+                <span>Kurabiye & Donut Sevgisi 🍪</span>
+                <span class="text-amber-700">100%</span>
               </div>
-              <div class="w-full bg-amber-200/60 h-3 rounded-full overflow-hidden">
-                <div class="bg-gradient-to-r from-amber-500 to-pink-500 h-full rounded-full w-full"></div>
+              <div class="w-full bg-amber-200/60 h-3.5 rounded-full overflow-hidden p-0.5 border border-amber-300/60">
+                <div class="bg-gradient-to-r from-amber-400 to-amber-600 h-full rounded-full w-full"></div>
               </div>
             </div>
 
             <div>
               <div class="flex justify-between mb-1">
-                <span>Sevimlilik Oranı ✨</span>
-                <span class="text-pink-600">SONSUZ</span>
+                <span>Sevimlilik & Neşe ✨</span>
+                <span class="text-sky-700">SONSUZ</span>
               </div>
-              <div class="w-full bg-amber-200/60 h-3 rounded-full overflow-hidden">
-                <div class="bg-gradient-to-r from-pink-400 to-rose-500 h-full rounded-full w-full"></div>
-              </div>
-            </div>
-
-            <div>
-              <div class="flex justify-between mb-1">
-                <span>Engellerden Kaçış Çevikliği 🏃</span>
-                <span class="text-amber-800">94%</span>
-              </div>
-              <div class="w-full bg-amber-200/60 h-3 rounded-full overflow-hidden">
-                <div class="bg-gradient-to-r from-amber-400 to-amber-600 h-full rounded-full w-[94%]"></div>
+              <div class="w-full bg-sky-200/60 h-3.5 rounded-full overflow-hidden p-0.5 border border-sky-300/60">
+                <div class="bg-gradient-to-r from-sky-400 to-blue-500 h-full rounded-full w-full"></div>
               </div>
             </div>
 
             <div>
               <div class="flex justify-between mb-1">
-                <span>Donut Mıknatısı Gücü 🍩</span>
-                <span class="text-sky-600">89%</span>
+                <span>Bombalardan Kaçış Refleksi 🏃</span>
+                <span class="text-emerald-700">95%</span>
               </div>
-              <div class="w-full bg-sky-200/60 h-3 rounded-full overflow-hidden">
-                <div class="bg-gradient-to-r from-sky-400 to-blue-500 h-full rounded-full w-[89%]"></div>
+              <div class="w-full bg-emerald-200/60 h-3.5 rounded-full overflow-hidden p-0.5 border border-emerald-300/60">
+                <div class="bg-gradient-to-r from-emerald-400 to-teal-500 h-full rounded-full w-[95%]"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span>Mega Combo Yeteneği 🔥</span>
+                <span class="text-purple-700">x13 COMBO!</span>
+              </div>
+              <div class="w-full bg-purple-200/60 h-3.5 rounded-full overflow-hidden p-0.5 border border-purple-300/60">
+                <div class="bg-gradient-to-r from-pink-500 to-purple-600 h-full rounded-full w-[92%]"></div>
               </div>
             </div>
           </div>
 
-          <div class="mt-6 pt-5 border-t border-amber-200/80 flex items-center justify-between text-xs font-semibold text-amber-900/70">
-            <span>Favori Yiyeceği: Çikolata Parçacıklı Kurabiye</span>
-            <span class="bg-amber-200 text-amber-900 px-2 py-0.5 rounded-full font-bold">Ağır Siklet Koşucu</span>
+          <div class="mt-6 pt-5 border-t border-amber-200 flex items-center justify-between text-xs font-title font-bold text-amber-900">
+            <span>Favori: Kurabiye & Pembe Donut</span>
+            <span class="bg-amber-200 text-amber-900 px-2.5 py-1 rounded-full">Ağır Siklet Şampiyon</span>
           </div>
 
         </div>
@@ -349,38 +353,38 @@
         <!-- Right: 3 Pillars of Gameplay -->
         <div class="lg:col-span-7 space-y-4">
           
-          <div class="p-5 sm:p-6 rounded-2xl bg-white border border-amber-100 shadow-sm hover:shadow-md transition-shadow flex items-start gap-4">
-            <div class="w-12 h-12 rounded-xl bg-pink-100 text-pink-600 flex items-center justify-center shrink-0 text-2xl font-bold">
-              ⚡
+          <div class="p-5 sm:p-6 rounded-3xl bg-white/90 border-2 border-sky-100 shadow-sm hover:shadow-md transition-shadow flex items-start gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center shrink-0 text-2xl font-bold">
+              🍔
             </div>
             <div>
-              <h4 class="font-title text-xl font-bold text-candy-choco mb-1">Akıcı & Hızlı Sonsuz Koşu</h4>
-              <p class="text-sm sm:text-base text-amber-900/80 leading-relaxed">
-                Her koşuda değişen prosedürel parkurlar, dönen lolipop testereler, şeker jöle rampaları ve dev çikolata şelaleleri! Reflekslerinizi test edin.
+              <h4 class="font-title text-xl font-bold text-candy-choco mb-1">Lezzetli Menüleri Yakala</h4>
+              <p class="text-sm sm:text-base text-amber-950 font-medium leading-relaxed">
+                Balık ekmekler, çıtır tepsi börekleri, sulu burgerler, pizzalar ve serinletici gazozlar gökten yağıyor! Dobişko'yu yönlendirerek tüm yiyecekleri topla.
               </p>
             </div>
           </div>
 
-          <div class="p-5 sm:p-6 rounded-2xl bg-white border border-amber-100 shadow-sm hover:shadow-md transition-shadow flex items-start gap-4">
-            <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center shrink-0 text-2xl font-bold">
-              🧲
+          <div class="p-5 sm:p-6 rounded-3xl bg-white/90 border-2 border-pink-100 shadow-sm hover:shadow-md transition-shadow flex items-start gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center shrink-0 text-2xl font-bold">
+              💣
             </div>
             <div>
-              <h4 class="font-title text-xl font-bold text-candy-choco mb-1">Eğlenceli Güçlendiriciler</h4>
-              <p class="text-sm sm:text-base text-amber-900/80 leading-relaxed">
-                Donut kalkanı ile tek darbeden kurtulun, şeker mıknatısıyla tüm paraları çekin veya Şeker Roketi ile gökyüzünde bonus altın donatlar toplayın!
+              <h4 class="font-title text-xl font-bold text-candy-choco mb-1">Bomba Yemek Yasak!</h4>
+              <p class="text-sm sm:text-base text-amber-950 font-medium leading-relaxed">
+                Lezzetli yiyeceklerin arasına sinsi sinsi karışan sevimli bombalara dikkat et! Zamanlamanı iyi ayarla ve bombalardan hızla kaç.
               </p>
             </div>
           </div>
 
-          <div class="p-5 sm:p-6 rounded-2xl bg-white border border-amber-100 shadow-sm hover:shadow-md transition-shadow flex items-start gap-4">
-            <div class="w-12 h-12 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center shrink-0 text-2xl font-bold">
-              📱
+          <div class="p-5 sm:p-6 rounded-3xl bg-white/90 border-2 border-amber-100 shadow-sm hover:shadow-md transition-shadow flex items-start gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-sky-100 text-sky-600 flex items-center justify-center shrink-0 text-2xl font-bold">
+              ✈️
             </div>
             <div>
-              <h4 class="font-title text-xl font-bold text-candy-choco mb-1">İster Otobüste, İster Metroda: Çevrimdışı</h4>
-              <p class="text-sm sm:text-base text-amber-900/80 leading-relaxed">
-                İnternet bağlantısına ihtiyaç duymaz! Pil dostu optimize motoruyla en mütevazı Android telefonlarda bile akıcı 60 FPS deneyimi sunar.
+              <h4 class="font-title text-xl font-bold text-candy-choco mb-1">Tarihi Dünya Şehirleri</h4>
+              <p class="text-sm sm:text-base text-amber-950 font-medium leading-relaxed">
+                İstanbul Galata Kulesi manzarası, Mostar Köprüsü gün batımı, Paris Eyfel Kulesi ve Gotik Şato mutfağında unutulmaz lezzet turları!
               </p>
             </div>
           </div>
@@ -397,13 +401,13 @@
        ======================================================================== -->
   <section id="features" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
     <div class="text-center max-w-3xl mx-auto space-y-3 mb-14">
-      <span class="text-xs sm:text-sm font-bold uppercase tracking-widest text-amber-600 bg-amber-100/90 px-3.5 py-1 rounded-full border border-amber-200">
+      <span class="text-xs sm:text-sm font-title font-bold uppercase tracking-widest text-sky-800 bg-white/90 px-4 py-1.5 rounded-full border border-sky-200 shadow-xs">
         Neden Dobişko?
       </span>
-      <h2 class="font-title text-3xl sm:text-5xl font-bold text-candy-choco">
-        Parmaklarının Ucundaki Tatlı Heyecan
+      <h2 class="font-title text-3xl sm:text-5xl font-extrabold text-white drop-shadow-[0_3px_0_#0284c7]">
+        Parmaklarının Ucundaki Eğlence
       </h2>
-      <p class="text-base sm:text-lg text-amber-900/80">
+      <p class="text-base sm:text-lg text-white font-bold drop-shadow-xs">
         Özenle tasarlanmış mekanikler, bağımlılık yapan koşu ritmi ve sevimli animasyonlarla günün stresini atın.
       </p>
     </div>
@@ -411,51 +415,51 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       
       <!-- Feature Card 1 -->
-      <div class="glass-card p-6 sm:p-7 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-white/80 hover:-translate-y-2 group">
-        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-pink-500 to-rose-400 text-white flex items-center justify-center text-2xl shadow-md group-hover:scale-110 transition-transform mb-5">
+      <div class="candy-card p-6 sm:p-7 hover:-translate-y-2 transition-all duration-300 group">
+        <div class="w-14 h-14 rounded-2xl bg-amber-400 text-amber-950 flex items-center justify-center text-2xl shadow-md group-hover:scale-110 transition-transform mb-5">
           <i class="fa-solid fa-hand-pointer"></i>
         </div>
         <h3 class="font-title text-xl font-bold text-candy-choco mb-2">Kolay Kontroller</h3>
-        <p class="text-sm text-amber-900/80 leading-relaxed">
-          Tek parmakla yukarı kaydırarak zıpla, aşağı kaydırarak yuvarlan ve engellerin altından kayarak geç.
+        <p class="text-sm text-amber-950 font-medium leading-relaxed">
+          Tek parmakla sağa-sola kaydır, lezzetleri havada kap ve düşen sevimli bombaların altından ustaca kaç.
         </p>
-        <span class="inline-block mt-4 text-xs font-bold text-pink-600 uppercase tracking-wide">Tek Elle Oyna &rarr;</span>
+        <span class="inline-block mt-4 text-xs font-title font-bold text-amber-600 uppercase tracking-wide">Tek Elle Oyna &rarr;</span>
       </div>
 
       <!-- Feature Card 2 -->
-      <div class="glass-card p-6 sm:p-7 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-white/80 hover:-translate-y-2 group">
-        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-amber-500 to-yellow-400 text-white flex items-center justify-center text-2xl shadow-md group-hover:scale-110 transition-transform mb-5">
+      <div class="candy-card p-6 sm:p-7 hover:-translate-y-2 transition-all duration-300 group">
+        <div class="w-14 h-14 rounded-2xl bg-sky-400 text-white flex items-center justify-center text-2xl shadow-md group-hover:scale-110 transition-transform mb-5">
           <i class="fa-solid fa-wand-magic-sparkles"></i>
         </div>
-        <h3 class="font-title text-xl font-bold text-candy-choco mb-2">Tatlı Güçler</h3>
-        <p class="text-sm text-amber-900/80 leading-relaxed">
-          Çilekli hız kalkanı, şeker mıknatısı ve devleşme jölesi ile yolundaki her tatlıyı anında süpür.
+        <h3 class="font-title text-xl font-bold text-candy-choco mb-2">Tatlı Güçlendiriciler</h3>
+        <p class="text-sm text-amber-950 font-medium leading-relaxed">
+          Fizzy gazoz patlaması, salata kaseleri ve altın paralar ile skorunu katla, Mega Combo yakala!
         </p>
-        <span class="inline-block mt-4 text-xs font-bold text-amber-600 uppercase tracking-wide">Güçleri Yükselt &rarr;</span>
+        <span class="inline-block mt-4 text-xs font-title font-bold text-sky-600 uppercase tracking-wide">Güçleri Yükselt &rarr;</span>
       </div>
 
       <!-- Feature Card 3 -->
-      <div class="glass-card p-6 sm:p-7 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-white/80 hover:-translate-y-2 group">
-        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-sky-500 to-cyan-400 text-white flex items-center justify-center text-2xl shadow-md group-hover:scale-110 transition-transform mb-5">
+      <div class="candy-card p-6 sm:p-7 hover:-translate-y-2 transition-all duration-300 group">
+        <div class="w-14 h-14 rounded-2xl bg-rose-400 text-white flex items-center justify-center text-2xl shadow-md group-hover:scale-110 transition-transform mb-5">
           <i class="fa-solid fa-shirt"></i>
         </div>
-        <h3 class="font-title text-xl font-bold text-candy-choco mb-2">20+ Komik Kostüm</h3>
-        <p class="text-sm text-amber-900/80 leading-relaxed">
-          Usta Şef şapkası, Astronot kaskı, Parti gözlüğü ve Süper Kahraman peleriniyle Dobişko'yu donat.
+        <h3 class="font-title text-xl font-bold text-candy-choco mb-2">Eğlenceli Kostümler</h3>
+        <p class="text-sm text-amber-950 font-medium leading-relaxed">
+          Geleneksel Fes ve Osmanlı yeleği, Gotik Drakula pelerini ve silindir şapka gibi özel kıyafetler.
         </p>
-        <span class="inline-block mt-4 text-xs font-bold text-sky-600 uppercase tracking-wide">Gardırobu Keşfet &rarr;</span>
+        <span class="inline-block mt-4 text-xs font-title font-bold text-rose-600 uppercase tracking-wide">Gardırobu Keşfet &rarr;</span>
       </div>
 
       <!-- Feature Card 4 -->
-      <div class="glass-card p-6 sm:p-7 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-white/80 hover:-translate-y-2 group">
-        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-400 text-white flex items-center justify-center text-2xl shadow-md group-hover:scale-110 transition-transform mb-5">
-          <i class="fa-solid fa-trophy"></i>
+      <div class="candy-card p-6 sm:p-7 hover:-translate-y-2 transition-all duration-300 group">
+        <div class="w-14 h-14 rounded-2xl bg-emerald-400 text-white flex items-center justify-center text-2xl shadow-md group-hover:scale-110 transition-transform mb-5">
+          <i class="fa-solid fa-wifi"></i>
         </div>
-        <h3 class="font-title text-xl font-bold text-candy-choco mb-2">Haftalık Rekorlar</h3>
-        <p class="text-sm text-amber-900/80 leading-relaxed">
-          Arkadaşlarına meydan oku, en uzun mesafeyi koş ve haftalık şampiyonluk rozetlerini topla.
+        <h3 class="font-title text-xl font-bold text-candy-choco mb-2">%100 Çevrimdışı</h3>
+        <p class="text-sm text-amber-950 font-medium leading-relaxed">
+          İnternet kotanızı tüketmez! Metroda, otobüste veya uçakta dilediğiniz her yerde kesintisiz oynayın.
         </p>
-        <span class="inline-block mt-4 text-xs font-bold text-emerald-600 uppercase tracking-wide">Zirveye Yarış &rarr;</span>
+        <span class="inline-block mt-4 text-xs font-title font-bold text-emerald-600 uppercase tracking-wide">Her Yerde Oyna &rarr;</span>
       </div>
 
     </div>
@@ -464,17 +468,17 @@
   <!-- ========================================================================
        SECTION 4: SCREENSHOTS & GALLERY GRID (Ekran Görüntüleri)
        ======================================================================== -->
-  <section id="gallery" class="py-16 sm:py-24 bg-gradient-to-b from-white/90 to-pink-50/70 border-y border-pink-100 relative z-10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="gallery" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
+    <div class="candy-card p-6 sm:p-12">
       
-      <div class="text-center max-w-3xl mx-auto space-y-3 mb-14">
-        <span class="text-xs sm:text-sm font-bold uppercase tracking-widest text-pink-600 bg-pink-100/90 px-3.5 py-1 rounded-full border border-pink-200">
+      <div class="text-center max-w-3xl mx-auto space-y-3 mb-12">
+        <span class="text-xs sm:text-sm font-title font-bold uppercase tracking-widest text-amber-800 bg-amber-100 px-4 py-1.5 rounded-full border border-amber-200">
           Oyun İçi Görseller
         </span>
-        <h2 class="font-title text-3xl sm:text-5xl font-bold text-candy-choco">
+        <h2 class="font-title text-3xl sm:text-5xl font-extrabold text-candy-choco">
           Renkli Dünyadan Kareler
         </h2>
-        <p class="text-base sm:text-lg text-amber-900/80">
+        <p class="text-base sm:text-lg text-amber-950 font-medium">
           Görsellere tıklayarak tam ekran inceleyebilir, oyun mekaniklerini yakından keşfedebilirsiniz.
         </p>
       </div>
@@ -483,10 +487,10 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
         
         <!-- Screenshot Card 1 -->
-        <div class="gallery-item gallery-trigger cursor-pointer group rounded-3xl bg-white p-3 shadow-md border-2 border-pink-100 hover:border-pink-300" data-index="0" data-img="assets/img/screenshots/screenshot-galata.png" data-title="İstanbul / Galata Kulesi Parkuru" data-desc="Tarihi Galata Kulesi manzarası eşliğinde leziz balık ekmek ve köfteleri yakala! Sevimli bombalara dikkat et." data-tag="İstanbul">
-          <div class="relative rounded-2xl overflow-hidden h-80 bg-slate-900 border border-pink-200">
+        <div class="gallery-item gallery-trigger cursor-pointer group rounded-3xl bg-white p-3 shadow-md border-3 border-amber-100 hover:border-amber-300" data-index="0" data-img="assets/img/screenshots/screenshot-galata.png" data-title="İstanbul / Galata Kulesi Parkuru" data-desc="Tarihi Galata Kulesi manzarası eşliğinde leziz balık ekmek ve köfteleri yakala! Sevimli bombalara dikkat et." data-tag="İstanbul">
+          <div class="relative rounded-2xl overflow-hidden h-80 bg-slate-900 border border-amber-200">
             <img src="assets/img/screenshots/screenshot-galata.png" alt="İstanbul Galata Kulesi" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-            <div class="gallery-overlay absolute inset-0 bg-pink-600/70 backdrop-blur-xs opacity-0 transition-opacity flex flex-col items-center justify-center text-white z-20">
+            <div class="gallery-overlay absolute inset-0 bg-amber-600/75 backdrop-blur-xs opacity-0 transition-opacity flex flex-col items-center justify-center text-white z-20">
               <i class="fa-solid fa-magnifying-glass-plus text-3xl mb-1"></i>
               <span class="font-title text-sm font-bold">Tam Ekran İncele</span>
             </div>
@@ -494,17 +498,17 @@
           <div class="pt-3 px-1">
             <div class="flex items-center justify-between mb-1">
               <h4 class="font-title font-bold text-candy-choco text-base">İstanbul / Galata</h4>
-              <span class="text-[10px] font-bold text-pink-600 bg-pink-100 px-2 py-0.5 rounded-full">Bölüm 1</span>
+              <span class="text-[10px] font-title font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-full">Bölüm 1</span>
             </div>
-            <p class="text-xs text-amber-900/70">Balık ekmekleri topla, bombalara dikkat et!</p>
+            <p class="text-xs text-amber-950 font-medium">Balık ekmekleri topla, bombalara dikkat et!</p>
           </div>
         </div>
 
         <!-- Screenshot Card 2 -->
-        <div class="gallery-item gallery-trigger cursor-pointer group rounded-3xl bg-white p-3 shadow-md border-2 border-amber-100 hover:border-amber-300" data-index="1" data-img="assets/img/screenshots/screenshot-mostar-fes.png" data-title="Balkanlar & Geleneksel Fesli Dobişko" data-desc="Tarihi Mostar Köprüsü gün batımında nefis tepsi börekleri ve cevapi köfteleri kap! Fes ve yelek kostümüyle Dobişko sahnede." data-tag="Kostüm">
+        <div class="gallery-item gallery-trigger cursor-pointer group rounded-3xl bg-white p-3 shadow-md border-3 border-amber-100 hover:border-amber-300" data-index="1" data-img="assets/img/screenshots/screenshot-mostar-fes.png" data-title="Balkanlar & Geleneksel Fesli Dobişko" data-desc="Tarihi Mostar Köprüsü gün batımında nefis tepsi börekleri ve cevapi köfteleri kap! Fes ve yelek kostümüyle Dobişko sahnede." data-tag="Kostüm">
           <div class="relative rounded-2xl overflow-hidden h-80 bg-slate-900 border border-amber-200">
             <img src="assets/img/screenshots/screenshot-mostar-fes.png" alt="Balkanlar Fesli Dobişko" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-            <div class="gallery-overlay absolute inset-0 bg-pink-600/70 backdrop-blur-xs opacity-0 transition-opacity flex flex-col items-center justify-center text-white z-20">
+            <div class="gallery-overlay absolute inset-0 bg-amber-600/75 backdrop-blur-xs opacity-0 transition-opacity flex flex-col items-center justify-center text-white z-20">
               <i class="fa-solid fa-magnifying-glass-plus text-3xl mb-1"></i>
               <span class="font-title text-sm font-bold">Tam Ekran İncele</span>
             </div>
@@ -512,17 +516,17 @@
           <div class="pt-3 px-1">
             <div class="flex items-center justify-between mb-1">
               <h4 class="font-title font-bold text-candy-choco text-base">Balkanlar & Fes</h4>
-              <span class="text-[10px] font-bold text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full">Kostüm</span>
+              <span class="text-[10px] font-title font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-full">Kostüm</span>
             </div>
-            <p class="text-xs text-amber-900/70">Mostar gün batımında börek ve köfteleri kap!</p>
+            <p class="text-xs text-amber-950 font-medium">Mostar gün batımında börek ve köfteleri kap!</p>
           </div>
         </div>
 
         <!-- Screenshot Card 3 -->
-        <div class="gallery-item gallery-trigger cursor-pointer group rounded-3xl bg-white p-3 shadow-md border-2 border-sky-100 hover:border-sky-300" data-index="2" data-img="assets/img/screenshots/screenshot-paris-bomba.png" data-title="Paris / Eyfel Kulesi & Bomba Kaçışı" data-desc="Eyfel Kulesi manzaralı kafede sevimli ama tehlikeli bombalardan hızla kaç! Reflekslerini konuştur." data-tag="Refleks">
+        <div class="gallery-item gallery-trigger cursor-pointer group rounded-3xl bg-white p-3 shadow-md border-3 border-sky-100 hover:border-sky-300" data-index="2" data-img="assets/img/screenshots/screenshot-paris-bomba.png" data-title="Paris / Eyfel Kulesi & Bomba Kaçışı" data-desc="Eyfel Kulesi manzaralı kafede sevimli ama tehlikeli bombalardan hızla kaç! Reflekslerini konuştur." data-tag="Refleks">
           <div class="relative rounded-2xl overflow-hidden h-80 bg-slate-900 border border-sky-200">
             <img src="assets/img/screenshots/screenshot-paris-bomba.png" alt="Paris Eyfel Kulesi" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-            <div class="gallery-overlay absolute inset-0 bg-pink-600/70 backdrop-blur-xs opacity-0 transition-opacity flex flex-col items-center justify-center text-white z-20">
+            <div class="gallery-overlay absolute inset-0 bg-sky-600/75 backdrop-blur-xs opacity-0 transition-opacity flex flex-col items-center justify-center text-white z-20">
               <i class="fa-solid fa-magnifying-glass-plus text-3xl mb-1"></i>
               <span class="font-title text-sm font-bold">Tam Ekran İncele</span>
             </div>
@@ -530,17 +534,17 @@
           <div class="pt-3 px-1">
             <div class="flex items-center justify-between mb-1">
               <h4 class="font-title font-bold text-candy-choco text-base">Paris / Bomba!</h4>
-              <span class="text-[10px] font-bold text-sky-700 bg-sky-100 px-2 py-0.5 rounded-full">Refleks</span>
+              <span class="text-[10px] font-title font-bold text-sky-800 bg-sky-100 px-2 py-0.5 rounded-full">Refleks</span>
             </div>
-            <p class="text-xs text-amber-900/70">Eyfel manzaralı sokakta bombalardan sıyrıl!</p>
+            <p class="text-xs text-amber-950 font-medium">Eyfel manzaralı sokakta bombalardan sıyrıl!</p>
           </div>
         </div>
 
         <!-- Screenshot Card 4 -->
-        <div class="gallery-item gallery-trigger cursor-pointer group rounded-3xl bg-white p-3 shadow-md border-2 border-purple-100 hover:border-purple-300" data-index="3" data-img="assets/img/screenshots/screenshot-vampire-combo.jpg" data-title="Gotik Şato & Drakula Kostümü Mega Combo!" data-desc="Şato mahzeninde Drakula pelerini ve silindir şapkayla x13 Mega Combo yakala, gazozları ve kebapları topla!" data-tag="Drakula">
+        <div class="gallery-item gallery-trigger cursor-pointer group rounded-3xl bg-white p-3 shadow-md border-3 border-purple-100 hover:border-purple-300" data-index="3" data-img="assets/img/screenshots/screenshot-vampire-combo.jpg" data-title="Gotik Şato & Drakula Kostümü Mega Combo!" data-desc="Şato mahzeninde Drakula pelerini ve silindir şapkayla x13 Mega Combo yakala, gazozları ve kebapları topla!" data-tag="Drakula">
           <div class="relative rounded-2xl overflow-hidden h-80 bg-slate-900 border border-purple-200">
             <img src="assets/img/screenshots/screenshot-vampire-combo.jpg" alt="Gotik Şato Drakula Kostümü" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-            <div class="gallery-overlay absolute inset-0 bg-pink-600/70 backdrop-blur-xs opacity-0 transition-opacity flex flex-col items-center justify-center text-white z-20">
+            <div class="gallery-overlay absolute inset-0 bg-purple-600/75 backdrop-blur-xs opacity-0 transition-opacity flex flex-col items-center justify-center text-white z-20">
               <i class="fa-solid fa-magnifying-glass-plus text-3xl mb-1"></i>
               <span class="font-title text-sm font-bold">Tam Ekran İncele</span>
             </div>
@@ -548,17 +552,17 @@
           <div class="pt-3 px-1">
             <div class="flex items-center justify-between mb-1">
               <h4 class="font-title font-bold text-candy-choco text-base">Mega Combo x13!</h4>
-              <span class="text-[10px] font-bold text-purple-700 bg-purple-100 px-2 py-0.5 rounded-full">Drakula</span>
+              <span class="text-[10px] font-title font-bold text-purple-800 bg-purple-100 px-2 py-0.5 rounded-full">Drakula</span>
             </div>
-            <p class="text-xs text-amber-900/70">Şato mutfağında gazoz ve kebap fırtınası!</p>
+            <p class="text-xs text-amber-950 font-medium">Şato mutfağında gazoz ve kebap fırtınası!</p>
           </div>
         </div>
 
         <!-- Screenshot Card 5 -->
-        <div class="gallery-item gallery-trigger cursor-pointer group rounded-3xl bg-white p-3 shadow-md border-2 border-emerald-100 hover:border-emerald-300" data-index="4" data-img="assets/img/screenshots/screenshot-paris-burger.png" data-title="Paris Gourmet & Pizza/Burger Ziyafeti" data-desc="Havada uçuşan çıtır pizza dilimleri ve burgerleri Dobişko'nun göbeğine indir! Salatalarla puanını katla." data-tag="Ziyafet">
+        <div class="gallery-item gallery-trigger cursor-pointer group rounded-3xl bg-white p-3 shadow-md border-3 border-emerald-100 hover:border-emerald-300" data-index="4" data-img="assets/img/screenshots/screenshot-paris-burger.png" data-title="Paris Gourmet & Pizza/Burger Ziyafeti" data-desc="Havada uçuşan çıtır pizza dilimleri ve burgerleri Dobişko'nun göbeğine indir! Salatalarla puanını katla." data-tag="Ziyafet">
           <div class="relative rounded-2xl overflow-hidden h-80 bg-slate-900 border border-emerald-200">
             <img src="assets/img/screenshots/screenshot-paris-burger.png" alt="Paris Burger ve Pizza Ziyafeti" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-            <div class="gallery-overlay absolute inset-0 bg-pink-600/70 backdrop-blur-xs opacity-0 transition-opacity flex flex-col items-center justify-center text-white z-20">
+            <div class="gallery-overlay absolute inset-0 bg-emerald-600/75 backdrop-blur-xs opacity-0 transition-opacity flex flex-col items-center justify-center text-white z-20">
               <i class="fa-solid fa-magnifying-glass-plus text-3xl mb-1"></i>
               <span class="font-title text-sm font-bold">Tam Ekran İncele</span>
             </div>
@@ -566,9 +570,9 @@
           <div class="pt-3 px-1">
             <div class="flex items-center justify-between mb-1">
               <h4 class="font-title font-bold text-candy-choco text-base">Pizza & Burger</h4>
-              <span class="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full">Ziyafet</span>
+              <span class="text-[10px] font-title font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full">Ziyafet</span>
             </div>
-            <p class="text-xs text-amber-900/70">Havada uçuşan çıtır pizzaları göbeğe indir!</p>
+            <p class="text-xs text-amber-950 font-medium">Havada uçuşan çıtır pizzaları göbeğe indir!</p>
           </div>
         </div>
 
@@ -581,23 +585,23 @@
        SECTION 5: DOWNLOAD / STORE CENTER
        ======================================================================== -->
   <section id="download" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
-    <div class="bg-gradient-to-br from-amber-400 via-pink-400 to-rose-500 rounded-[36px] sm:rounded-[48px] p-6 sm:p-12 lg:p-16 text-white shadow-2xl relative overflow-hidden">
+    <div class="bg-gradient-to-br from-amber-500 via-amber-400 to-yellow-300 rounded-[36px] sm:rounded-[48px] p-6 sm:p-12 lg:p-16 text-amber-950 shadow-2xl relative overflow-hidden border-4 border-white">
       
       <!-- Decorative background circles -->
-      <div class="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-white/10 blur-2xl pointer-events-none"></div>
-      <div class="absolute -left-20 -top-20 w-80 h-80 rounded-full bg-yellow-300/20 blur-2xl pointer-events-none"></div>
+      <div class="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-white/20 blur-2xl pointer-events-none"></div>
+      <div class="absolute -left-20 -top-20 w-80 h-80 rounded-full bg-amber-600/10 blur-2xl pointer-events-none"></div>
 
       <div class="max-w-4xl mx-auto text-center space-y-6 relative z-10">
         
-        <span class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider border border-white/30">
+        <span class="inline-flex items-center gap-2 bg-white/80 backdrop-blur-md px-4 py-1.5 rounded-full text-xs sm:text-sm font-title font-bold uppercase tracking-wider border border-white">
           <span>🎮</span> Android İçin Ücretsiz İndir
         </span>
 
-        <h2 class="font-title text-3xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+        <h2 class="font-title text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-amber-950 drop-shadow-[0_2px_0_#ffffff]">
           Hemen İndir ve Dobişko'ya Katıl!
         </h2>
 
-        <p class="text-base sm:text-lg text-white/90 max-w-2xl mx-auto leading-relaxed">
+        <p class="text-base sm:text-lg text-amber-900 max-w-2xl mx-auto leading-relaxed font-semibold">
           Oyunun en son derlenen tam sürüm test APK dosyasını doğrudan indirebilir ve Android telefonunuza saniyeler içinde kurabilirsiniz.
         </p>
 
@@ -605,53 +609,53 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 text-left">
           
           <!-- Card 1: Direct APK (Recommended) -->
-          <div class="bg-white text-candy-choco p-6 sm:p-8 rounded-3xl shadow-xl border-4 border-yellow-300 relative flex flex-col justify-between group">
-            <div class="absolute -top-3.5 right-6 bg-yellow-400 text-amber-950 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow">
+          <div class="bg-white text-candy-choco p-6 sm:p-8 rounded-3xl shadow-xl border-4 border-amber-300 relative flex flex-col justify-between group">
+            <div class="absolute -top-3.5 right-6 bg-amber-400 text-amber-950 text-xs font-title font-bold px-3.5 py-1 rounded-full uppercase tracking-wider shadow">
               ⭐ En Hızlı & Doğrudan İndirme
             </div>
 
             <div>
               <div class="flex items-center gap-3 mb-4">
-                <div class="w-12 h-12 rounded-2xl bg-pink-100 text-pink-600 flex items-center justify-center text-2xl font-bold">
+                <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-2xl font-bold">
                   <i class="fa-brands fa-android"></i>
                 </div>
                 <div>
                   <h3 class="font-title text-xl font-bold">Doğrudan APK Dosyası</h3>
-                  <p class="text-xs text-amber-900/70 font-semibold">Dosya: dobisko_test_v_1_0.apk • Boyut: ~300 MB</p>
+                  <p class="text-xs text-amber-900/80 font-bold">Dosya: dobisko_test_v_1_0.apk • Boyut: ~300 MB</p>
                 </div>
               </div>
-              <p class="text-xs sm:text-sm text-amber-900/80 mb-6">
+              <p class="text-xs sm:text-sm text-amber-950 font-medium mb-6">
                 Yüksek çözünürlüklü grafikler, tüm bölümler ve kostümler içeren resmi test APK kurulum dosyası.
               </p>
             </div>
 
-            <a href="apk/dobisko_test_v_1_0.apk" download="dobisko_test_v_1_0.apk" class="download-trigger w-full bg-gradient-to-r from-pink-500 to-rose-600 text-white font-title text-base sm:text-lg py-3.5 rounded-2xl btn-candy flex items-center justify-center gap-2 cursor-pointer border border-white/40 shadow-md">
+            <a href="apk/dobisko_test_v_1_0.apk" download="dobisko_test_v_1_0.apk" class="download-trigger w-full btn-cookie font-title text-base sm:text-lg py-3.5 rounded-2xl flex items-center justify-center gap-2 cursor-pointer shadow-md">
               <i class="fa-solid fa-download"></i>
-              <span>Download APK (dobisko_test_v_1_0.apk)</span>
+              <span>Download APK (300 MB)</span>
             </a>
-            <span class="block text-[11px] text-center text-emerald-600 font-bold mt-2">
+            <span class="block text-[11px] text-center text-emerald-700 font-bold mt-2">
               <i class="fa-solid fa-circle-check"></i> Virüs Taramasından Geçti • %100 Güvenli Kurulum
             </span>
           </div>
 
           <!-- Card 2: Uptodown & Alternative Store -->
-          <div class="bg-white/95 text-candy-choco p-6 sm:p-8 rounded-3xl shadow-lg border border-white/60 flex flex-col justify-between">
+          <div class="bg-white/95 text-candy-choco p-6 sm:p-8 rounded-3xl shadow-lg border border-white flex flex-col justify-between">
             <div>
               <div class="flex items-center gap-3 mb-4">
-                <div class="w-12 h-12 rounded-2xl bg-sky-100 text-sky-600 flex items-center justify-center text-2xl font-bold">
+                <div class="w-12 h-12 rounded-2xl bg-sky-100 text-sky-700 flex items-center justify-center text-2xl font-bold">
                   <i class="fa-solid fa-store"></i>
                 </div>
                 <div>
                   <h3 class="font-title text-xl font-bold">Uptodown Mağazası</h3>
-                  <p class="text-xs text-amber-900/70 font-semibold">Resmi Bağımsız Android Kataloğu</p>
+                  <p class="text-xs text-amber-900/80 font-bold">Resmi Bağımsız Android Kataloğu</p>
                 </div>
               </div>
-              <p class="text-xs sm:text-sm text-amber-900/80 mb-6">
+              <p class="text-xs sm:text-sm text-amber-950 font-medium mb-6">
                 Uptodown App Store uygulaması üzerinden otomatik güncellemeleri almak isterseniz bu bağlantıyı kullanabilirsiniz.
               </p>
             </div>
 
-            <a href="apk/dobisko_test_v_1_0.apk" download="dobisko_test_v_1_0.apk" class="download-trigger w-full bg-slate-900 hover:bg-slate-800 text-white font-title text-base sm:text-lg py-3.5 rounded-2xl transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-md">
+            <a href="apk/dobisko_test_v_1_0.apk" download="dobisko_test_v_1_0.apk" class="download-trigger w-full btn-sky-candy font-title text-base sm:text-lg py-3.5 rounded-2xl transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-md">
               <i class="fa-solid fa-arrow-up-right-from-square"></i>
               <span>Uptodown ile İndir</span>
             </a>
@@ -663,22 +667,22 @@
         </div>
 
         <!-- Technical Specifications Table / Chips -->
-        <div class="pt-8 border-t border-white/20 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs sm:text-sm font-semibold">
-          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-3">
-            <span class="block text-white/70 text-[11px]">Gereken Sürüm</span>
-            <span class="text-white font-bold">Android 7.0 (Nougat)+</span>
+        <div class="pt-8 border-t border-amber-950/20 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs sm:text-sm font-title font-bold">
+          <div class="bg-white/40 backdrop-blur-sm rounded-2xl p-3 border border-white/50">
+            <span class="block text-amber-900/70 text-[11px]">Gereken Sürüm</span>
+            <span class="text-amber-950 font-extrabold">Android 7.0+</span>
           </div>
-          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-3">
-            <span class="block text-white/70 text-[11px]">Dosya Boyutu</span>
-            <span class="text-white font-bold">~300 Megabayt (299.5 MB)</span>
+          <div class="bg-white/40 backdrop-blur-sm rounded-2xl p-3 border border-white/50">
+            <span class="block text-amber-900/70 text-[11px]">Dosya Boyutu</span>
+            <span class="text-amber-950 font-extrabold">~300 Megabayt</span>
           </div>
-          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-3">
-            <span class="block text-white/70 text-[11px]">Bağlantı</span>
-            <span class="text-white font-bold">Çevrimdışı (İnternetsiz)</span>
+          <div class="bg-white/40 backdrop-blur-sm rounded-2xl p-3 border border-white/50">
+            <span class="block text-amber-900/70 text-[11px]">Bağlantı</span>
+            <span class="text-amber-950 font-extrabold">Çevrimdışı (İnternetsiz)</span>
           </div>
-          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-3">
-            <span class="block text-white/70 text-[11px]">Dil Desteği</span>
-            <span class="text-white font-bold">Türkçe & English</span>
+          <div class="bg-white/40 backdrop-blur-sm rounded-2xl p-3 border border-white/50">
+            <span class="block text-amber-900/70 text-[11px]">Dil Desteği</span>
+            <span class="text-amber-950 font-extrabold">Türkçe & English</span>
           </div>
         </div>
 
@@ -692,13 +696,13 @@
        ======================================================================== -->
   <section id="faq" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto relative z-10">
     <div class="text-center space-y-3 mb-12">
-      <span class="text-xs sm:text-sm font-bold uppercase tracking-widest text-pink-600 bg-pink-100/90 px-3.5 py-1 rounded-full border border-pink-200">
+      <span class="text-xs sm:text-sm font-title font-bold uppercase tracking-widest text-amber-800 bg-white/90 px-4 py-1.5 rounded-full border border-amber-200">
         Merak Edilenler
       </span>
-      <h2 class="font-title text-3xl sm:text-4xl font-bold text-candy-choco">
+      <h2 class="font-title text-3xl sm:text-4xl font-extrabold text-white drop-shadow-[0_2px_0_#0284c7]">
         Sıkça Sorulan Sorular
       </h2>
-      <p class="text-sm sm:text-base text-amber-900/80">
+      <p class="text-sm sm:text-base text-white font-semibold">
         Dobişko hakkında en çok aldığımız soruları ve yanıtlarını derledik.
       </p>
     </div>
@@ -707,45 +711,45 @@
     <div class="space-y-4">
       
       <!-- FAQ 1 -->
-      <div class="bg-white/90 rounded-2xl border border-amber-200/80 shadow-sm overflow-hidden">
-        <button class="faq-toggle w-full px-6 py-4 text-left flex items-center justify-between font-title font-bold text-base sm:text-lg text-candy-choco hover:text-candy-pink transition-colors cursor-pointer" aria-expanded="true">
+      <div class="candy-card overflow-hidden">
+        <button class="faq-toggle w-full px-6 py-4 text-left flex items-center justify-between font-title font-bold text-base sm:text-lg text-candy-choco hover:text-amber-600 transition-colors cursor-pointer" aria-expanded="true">
           <span>Dobişko tamamen ücretsiz mi?</span>
-          <i class="faq-icon fa-solid fa-chevron-down text-sm text-candy-pink transition-transform duration-200 rotate-180"></i>
+          <i class="faq-icon fa-solid fa-chevron-down text-sm text-amber-600 transition-transform duration-200 rotate-180"></i>
         </button>
-        <div class="faq-content px-6 pb-5 pt-1 text-sm sm:text-base text-amber-900/80 border-t border-amber-100">
-          Evet! Dobişko %100 ücretsiz olarak oynanabilir. Oyun içi tüm tatlılar, donatlar ve karakter kostümleri sadece koşarak topladığınız kurabiyelerle açılabilir. Herhangi bir "kazanmak için öde" (pay-to-win) mekanizması bulunmaz.
+        <div class="faq-content px-6 pb-5 pt-1 text-sm sm:text-base text-amber-950 font-medium border-t border-amber-100">
+          Evet! Dobişko %100 ücretsiz olarak oynanabilir. Oyun içi tüm lezzetler, donatlar ve karakter kostümleri sadece oynayarak topladığınız puanlarla açılabilir. Herhangi bir "kazanmak için öde" (pay-to-win) mekanizması bulunmaz.
         </div>
       </div>
 
       <!-- FAQ 2 -->
-      <div class="bg-white/90 rounded-2xl border border-amber-200/80 shadow-sm overflow-hidden">
-        <button class="faq-toggle w-full px-6 py-4 text-left flex items-center justify-between font-title font-bold text-base sm:text-lg text-candy-choco hover:text-candy-pink transition-colors cursor-pointer" aria-expanded="false">
+      <div class="candy-card overflow-hidden">
+        <button class="faq-toggle w-full px-6 py-4 text-left flex items-center justify-between font-title font-bold text-base sm:text-lg text-candy-choco hover:text-amber-600 transition-colors cursor-pointer" aria-expanded="false">
           <span>APK dosyasını telefonuma nasıl kurarım?</span>
-          <i class="faq-icon fa-solid fa-chevron-down text-sm text-candy-pink transition-transform duration-200"></i>
+          <i class="faq-icon fa-solid fa-chevron-down text-sm text-amber-600 transition-transform duration-200"></i>
         </button>
-        <div class="faq-content hidden px-6 pb-5 pt-1 text-sm sm:text-base text-amber-900/80 border-t border-amber-100">
-          APK dosyasını indirdikten sonra bildirime veya Dosyalar &gt; İndirilenler klasörüne dokunun. Android telefonunuz "Bilinmeyen kaynaklardan uygulama yüklemeye izin ver" uyarısı verirse, tarayıcınız veya dosya yöneticiniz için bu izni bir kerelik onaylayarak kurulumu 10 saniyede tamamlayabilirsiniz.
+        <div class="faq-content hidden px-6 pb-5 pt-1 text-sm sm:text-base text-amber-950 font-medium border-t border-amber-100">
+          APK dosyasını indirdikten sonra Dosyalar &gt; İndirilenler klasöründen <strong>dobisko_test_v_1_0.apk</strong> dosyasına dokunun. Telefonunuz bilinmeyen kaynak uyarısı verirse, bir kerelik tarayıcınız için izin vererek kurulumu saniyeler içinde tamamlayabilirsiniz.
         </div>
       </div>
 
       <!-- FAQ 3 -->
-      <div class="bg-white/90 rounded-2xl border border-amber-200/80 shadow-sm overflow-hidden">
-        <button class="faq-toggle w-full px-6 py-4 text-left flex items-center justify-between font-title font-bold text-base sm:text-lg text-candy-choco hover:text-candy-pink transition-colors cursor-pointer" aria-expanded="false">
+      <div class="candy-card overflow-hidden">
+        <button class="faq-toggle w-full px-6 py-4 text-left flex items-center justify-between font-title font-bold text-base sm:text-lg text-candy-choco hover:text-amber-600 transition-colors cursor-pointer" aria-expanded="false">
           <span>İnternetsiz (çevrimdışı) oynanabilir mi?</span>
-          <i class="faq-icon fa-solid fa-chevron-down text-sm text-candy-pink transition-transform duration-200"></i>
+          <i class="faq-icon fa-solid fa-chevron-down text-sm text-amber-600 transition-transform duration-200"></i>
         </button>
-        <div class="faq-content hidden px-6 pb-5 pt-1 text-sm sm:text-base text-amber-900/80 border-t border-amber-100">
+        <div class="faq-content hidden px-6 pb-5 pt-1 text-sm sm:text-base text-amber-950 font-medium border-t border-amber-100">
           Kesinlikle evet. Dobişko internet kotanızı harcamaz. Uçakta, metroda veya seyahatteyken hiçbir bağlantı olmadan tam performansla oynayabilirsiniz.
         </div>
       </div>
 
       <!-- FAQ 4 -->
-      <div class="bg-white/90 rounded-2xl border border-amber-200/80 shadow-sm overflow-hidden">
-        <button class="faq-toggle w-full px-6 py-4 text-left flex items-center justify-between font-title font-bold text-base sm:text-lg text-candy-choco hover:text-candy-pink transition-colors cursor-pointer" aria-expanded="false">
+      <div class="candy-card overflow-hidden">
+        <button class="faq-toggle w-full px-6 py-4 text-left flex items-center justify-between font-title font-bold text-base sm:text-lg text-candy-choco hover:text-amber-600 transition-colors cursor-pointer" aria-expanded="false">
           <span>iOS (iPhone / iPad) için ne zaman çıkacak?</span>
-          <i class="faq-icon fa-solid fa-chevron-down text-sm text-candy-pink transition-transform duration-200"></i>
+          <i class="faq-icon fa-solid fa-chevron-down text-sm text-amber-600 transition-transform duration-200"></i>
         </button>
-        <div class="faq-content hidden px-6 pb-5 pt-1 text-sm sm:text-base text-amber-900/80 border-t border-amber-100">
+        <div class="faq-content hidden px-6 pb-5 pt-1 text-sm sm:text-base text-amber-950 font-medium border-t border-amber-100">
           Şu an Android platformu için odaklandık. iOS ve Apple App Store sürümümüzün geliştirme çalışmaları devam etmekte olup yakın zamanda duyurulacaktır.
         </div>
       </div>
@@ -754,27 +758,27 @@
   </section>
 
   <!-- ========================================================================
-       FOOTER: Copyright, Indie Branding & Socials
+       FOOTER: Copyright, Indie Branding & Subtle Netlify Badge
        ======================================================================== -->
-  <footer class="bg-gradient-to-b from-white to-pink-50 border-t border-pink-200/80 pt-16 pb-12 px-4 sm:px-6 lg:px-8 relative z-10">
+  <footer class="bg-white/90 backdrop-blur-md border-t-2 border-sky-200 pt-16 pb-12 px-4 sm:px-6 lg:px-8 relative z-10">
     <div class="max-w-7xl mx-auto">
       
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-pink-200/70">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-amber-100">
         
-        <!-- Col 1: Brand & Indie Mission -->
+        <!-- Col 1: Brand & Character Avatar -->
         <div class="md:col-span-5 space-y-4">
           <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-amber-300 via-pink-400 to-rose-500 flex items-center justify-center text-2xl shadow-sm border border-white">
-              🍩
+            <div class="w-11 h-11 rounded-full overflow-hidden border-2 border-amber-300 shadow-sm">
+              <img src="assets/img/dobisko-avatar.png" alt="Dobişko" class="w-full h-full object-cover">
             </div>
-            <span class="font-title text-2xl font-bold text-candy-choco">
-              Dobişko<span class="text-candy-pink">.</span>
+            <span class="font-title text-2xl font-extrabold text-sky-600">
+              DOBİŞKO<span class="text-amber-500">.</span>
             </span>
           </div>
-          <p class="text-sm text-amber-900/80 max-w-sm leading-relaxed">
+          <p class="text-sm text-amber-950 font-medium max-w-sm leading-relaxed">
             Dobişko, bağımsız oyun geliştiricileri tarafından sevgiyle hazırlanan, neşeli ve tatlı bir Android mobil sonsuz koşu oyunudur.
           </p>
-          <div class="flex items-center gap-2 text-xs font-bold text-amber-800">
+          <div class="flex items-center gap-2 text-xs font-title font-bold text-amber-900">
             <span>🧁 Türkiye'de Sevgiyle Geliştirildi</span>
           </div>
         </div>
@@ -782,47 +786,56 @@
         <!-- Col 2: Quick Links -->
         <div class="md:col-span-3 space-y-3">
           <h4 class="font-title text-base font-bold text-candy-choco uppercase tracking-wider">Hızlı Bağlantılar</h4>
-          <ul class="space-y-2 text-sm font-semibold text-amber-900/80">
-            <li><a href="#about" class="hover:text-candy-pink transition-colors">Oyun Hakkında</a></li>
-            <li><a href="#features" class="hover:text-candy-pink transition-colors">Özellikler & Güçler</a></li>
-            <li><a href="#gallery" class="hover:text-candy-pink transition-colors">Ekran Görüntüleri</a></li>
-            <li><a href="#download" class="hover:text-candy-pink transition-colors">Doğrudan APK İndir</a></li>
-            <li><a href="#faq" class="hover:text-candy-pink transition-colors">Sıkça Sorulan Sorular</a></li>
+          <ul class="space-y-2 text-sm font-title font-semibold text-amber-950">
+            <li><a href="#about" class="hover:text-amber-600 transition-colors">Oyun Hakkında</a></li>
+            <li><a href="#features" class="hover:text-amber-600 transition-colors">Özellikler & Güçler</a></li>
+            <li><a href="#gallery" class="hover:text-amber-600 transition-colors">Ekran Görüntüleri</a></li>
+            <li><a href="#download" class="hover:text-amber-600 transition-colors">Doğrudan APK İndir</a></li>
+            <li><a href="#faq" class="hover:text-amber-600 transition-colors">Sıkça Sorulan Sorular</a></li>
           </ul>
         </div>
 
         <!-- Col 3: Social & Community -->
         <div class="md:col-span-4 space-y-4">
           <h4 class="font-title text-base font-bold text-candy-choco uppercase tracking-wider">Topluluğa Katıl</h4>
-          <p class="text-xs sm:text-sm text-amber-900/80">
+          <p class="text-xs sm:text-sm text-amber-950 font-medium">
             Geliştirme günlüklerini, yeni kostüm anketlerini ve tatlı güncellemeleri kaçırma!
           </p>
           <div class="flex items-center gap-3">
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-10 h-10 rounded-full bg-white border border-pink-200 text-pink-600 flex items-center justify-center hover:bg-pink-500 hover:text-white transition-all shadow-sm">
               <i class="fa-brands fa-instagram text-lg"></i>
             </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X" class="w-10 h-10 rounded-full bg-white border border-pink-200 text-slate-700 flex items-center justify-center hover:bg-slate-900 hover:text-white transition-all shadow-sm">
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X" class="w-10 h-10 rounded-full bg-white border border-sky-200 text-sky-700 flex items-center justify-center hover:bg-sky-600 hover:text-white transition-all shadow-sm">
               <i class="fa-brands fa-x-twitter text-lg"></i>
             </a>
-            <a href="https://discord.com" target="_blank" rel="noopener noreferrer" aria-label="Discord" class="w-10 h-10 rounded-full bg-white border border-pink-200 text-indigo-600 flex items-center justify-center hover:bg-indigo-600 hover:text-white transition-all shadow-sm">
+            <a href="https://discord.com" target="_blank" rel="noopener noreferrer" aria-label="Discord" class="w-10 h-10 rounded-full bg-white border border-indigo-200 text-indigo-600 flex items-center justify-center hover:bg-indigo-600 hover:text-white transition-all shadow-sm">
               <i class="fa-brands fa-discord text-lg"></i>
             </a>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="w-10 h-10 rounded-full bg-white border border-pink-200 text-red-600 flex items-center justify-center hover:bg-red-600 hover:text-white transition-all shadow-sm">
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="w-10 h-10 rounded-full bg-white border border-red-200 text-red-600 flex items-center justify-center hover:bg-red-600 hover:text-white transition-all shadow-sm">
               <i class="fa-brands fa-youtube text-lg"></i>
             </a>
           </div>
-          <div class="text-xs text-amber-900/70 pt-1">
-            İletişim & Basın Kiti: <a href="mailto:destek@dobisko.com" class="font-bold text-pink-600 hover:underline">destek@dobisko.com</a>
+          <div class="text-xs text-amber-900/80 pt-1 font-medium">
+            İletişim & Basın Kiti: <a href="mailto:destek@dobisko.com" class="font-bold text-amber-700 hover:underline">destek@dobisko.com</a>
           </div>
         </div>
 
       </div>
 
-      <!-- Bottom Disclaimer & Copyright -->
-      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-amber-900/60 font-semibold gap-4">
+      <!-- Bottom Disclaimer & Subtle Netlify Integration -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-amber-900/80 font-title font-semibold gap-4">
         <div>
           © 2026 Dobişko Studio. Tüm Hakları Saklıdır.
         </div>
+        
+        <!-- Subtle Netlify Badge Integration -->
+        <div class="inline-flex items-center gap-1.5 bg-slate-100 text-slate-600 px-3 py-1 rounded-full border border-slate-200 text-[11px]">
+          <svg class="w-3.5 h-3.5 text-teal-600" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M16.63 9.47L12 1.5 7.37 9.47h9.26zM2.87 11.23l1.85 3.2 4.41-7.64-6.26 4.44zm18.26 0l-6.26-4.44 4.41 7.64 1.85-3.2zM12 22.5l4.63-7.97H7.37L12 22.5z"/>
+          </svg>
+          <span>Powered by Netlify</span>
+        </div>
+
         <div class="flex items-center gap-6">
           <a href="#" class="hover:underline">Gizlilik Politikası</a>
           <a href="#" class="hover:underline">Kullanım Şartları</a>
@@ -834,21 +847,21 @@
   </footer>
 
   <!-- ========================================================================
-       MODAL: SCREENSHOT LIGHTBOX
+       MODAL: SCREENSHOT LIGHTBOX (Clean Mobile Aspect Ratio)
        ======================================================================== -->
   <div id="screenshotModal" class="hidden fixed inset-0 z-50 bg-black/85 backdrop-blur-md items-center justify-center p-3 sm:p-6">
     <div class="modal-enter relative max-w-sm sm:max-w-md w-full bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border-2 border-white/20 flex flex-col max-h-[92vh]">
       
       <!-- Close Button -->
-      <button id="modalCloseBtn" aria-label="Kapat" class="absolute top-3 right-3 z-30 w-10 h-10 rounded-full bg-black/75 hover:bg-black text-white flex items-center justify-center transition-colors shadow-lg border border-white/20">
+      <button id="modalCloseBtn" aria-label="Kapat" class="absolute top-3 right-3 z-30 w-10 h-10 rounded-full bg-black/75 hover:bg-black text-white flex items-center justify-center transition-colors shadow-lg border border-white/20 cursor-pointer">
         <i class="fa-solid fa-xmark text-lg"></i>
       </button>
 
       <!-- Nav Buttons (Prev/Next) -->
-      <button id="modalPrevBtn" aria-label="Önceki" class="absolute left-2.5 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center shadow-lg transition-transform hover:scale-105 border border-white/20">
+      <button id="modalPrevBtn" aria-label="Önceki" class="absolute left-2.5 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center shadow-lg transition-transform hover:scale-105 border border-white/20 cursor-pointer">
         <i class="fa-solid fa-chevron-left text-base"></i>
       </button>
-      <button id="modalNextBtn" aria-label="Sonraki" class="absolute right-2.5 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center shadow-lg transition-transform hover:scale-105 border border-white/20">
+      <button id="modalNextBtn" aria-label="Sonraki" class="absolute right-2.5 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center shadow-lg transition-transform hover:scale-105 border border-white/20 cursor-pointer">
         <i class="fa-solid fa-chevron-right text-base"></i>
       </button>
 
@@ -861,9 +874,9 @@
       <div class="p-4 sm:p-5 bg-white border-t border-amber-100">
         <div class="flex items-center justify-between gap-2 mb-1">
           <h3 id="modalTitle" class="font-title text-base sm:text-lg font-bold text-candy-choco">Görsel Başlığı</h3>
-          <span id="modalTag" class="text-xs font-bold text-pink-600 bg-pink-100 px-3 py-0.5 rounded-full shrink-0">Kategori</span>
+          <span id="modalTag" class="text-xs font-title font-bold text-amber-700 bg-amber-100 px-3 py-0.5 rounded-full shrink-0">Kategori</span>
         </div>
-        <p id="modalDesc" class="text-xs sm:text-sm text-amber-900/80 leading-relaxed">Açıklama metni.</p>
+        <p id="modalDesc" class="text-xs sm:text-sm text-amber-950 font-medium leading-relaxed">Açıklama metni.</p>
       </div>
 
     </div>
@@ -872,17 +885,17 @@
   <!-- ========================================================================
        TOAST NOTIFICATION: Download Trigger Snackbar
        ======================================================================== -->
-  <div id="downloadToast" class="fixed bottom-6 right-6 z-50 max-w-md bg-slate-900 text-white p-4 rounded-2xl shadow-2xl border-2 border-pink-400 flex items-center gap-3 transition-all duration-300 transform translate-y-20 opacity-0 pointer-events-none">
-    <div class="w-10 h-10 rounded-xl bg-pink-500 flex items-center justify-center text-xl shrink-0">
-      🍩
+  <div id="downloadToast" class="fixed bottom-6 right-6 z-50 max-w-md bg-slate-900 text-white p-4 rounded-2xl shadow-2xl border-2 border-amber-400 flex items-center gap-3 transition-all duration-300 transform translate-y-20 opacity-0 pointer-events-none">
+    <div class="w-10 h-10 rounded-xl bg-amber-500 flex items-center justify-center text-xl shrink-0">
+      🍪
     </div>
     <div>
-      <h5 class="font-title text-sm font-bold text-yellow-300">İndirme Başlatılıyor!</h5>
-      <p id="toastMessage" class="text-xs text-slate-200">Dobişko APK indiriliyor...</p>
+      <h5 class="font-title text-sm font-bold text-amber-300">İndirme Başlatılıyor!</h5>
+      <p id="toastMessage" class="text-xs text-slate-200">Dobişko APK (dobisko_test_v_1_0.apk) indiriliyor...</p>
     </div>
   </div>
 
   <!-- Interactive Scripts -->
-  <script src="assets/js/main.js?v=2.2"></script>
+  <script src="assets/js/main.js?v=3.0"></script>
 </body>
 </html>
