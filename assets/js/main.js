@@ -126,7 +126,7 @@ const screenshotsData = [
     tag: "Refleks"
   },
   {
-    image: "assets/img/screenshots/screenshot-vampire-combo.png",
+    image: "assets/img/screenshots/screenshot-vampire-combo.jpg",
     title: "Gotik Şato & Drakula Kostümü Mega Combo!",
     desc: "Şato mahzeninde Drakula pelerini ve silindir şapkayla x13 Mega Combo yakala, gazozları ve kebapları topla!",
     tag: "Özel Kostüm"
@@ -155,12 +155,19 @@ function initScreenshotModal() {
   function updateModal(index) {
     currentScreenshotIndex = (index + screenshotsData.length) % screenshotsData.length;
     const data = screenshotsData[currentScreenshotIndex];
+    
+    // Read from DOM card attributes if available
+    const card = document.querySelector(`.gallery-trigger[data-index="${currentScreenshotIndex}"]`);
+    const imgSrc = (card && card.getAttribute('data-img')) || (data && data.image) || '';
+    const title = (card && card.getAttribute('data-title')) || (data && data.title) || '';
+    const desc = (card && card.getAttribute('data-desc')) || (data && data.desc) || '';
+    const tag = (card && card.getAttribute('data-tag')) || (data && data.tag) || '';
 
-    if (modalTitle) modalTitle.textContent = data.title;
-    if (modalDesc) modalDesc.textContent = data.desc;
-    if (modalTag) modalTag.textContent = data.tag;
-    if (modalImg) {
-      modalImg.innerHTML = `<img src="${data.image}" alt="${data.title}" class="max-h-[65vh] sm:max-h-[70vh] w-auto mx-auto object-contain rounded-2xl shadow-xl border-2 border-white/20">`;
+    if (modalTitle) modalTitle.textContent = title;
+    if (modalDesc) modalDesc.textContent = desc;
+    if (modalTag) modalTag.textContent = tag;
+    if (modalImg && imgSrc) {
+      modalImg.innerHTML = `<img src="${imgSrc}" alt="${title}" class="max-h-[65vh] sm:max-h-[72vh] w-auto mx-auto object-contain rounded-2xl shadow-xl">`;
     }
   }
 
